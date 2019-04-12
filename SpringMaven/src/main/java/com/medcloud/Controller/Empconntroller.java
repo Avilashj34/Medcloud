@@ -62,7 +62,8 @@ public class Empconntroller {
 	public String insert(@ModelAttribute("register")Registration register,@RequestParam("firstname") String firstname ,
 			@RequestParam("emailid") String email,@RequestParam("photo") MultipartFile photo,
 			@RequestParam("password") String password,HttpServletRequest request,@RequestParam("phonenumber") Integer phonenumber,
-			HttpServletResponse response,Model m) throws IOException
+			HttpServletResponse response,@RequestParam("gender") String gender,@RequestParam("country")String country,
+			Model m) throws IOException
 	{
 		String checkEmail="";
 		boolean flag=false;
@@ -88,6 +89,8 @@ public class Empconntroller {
 		register.setPassword(encryptpassword);
 		byte[] b=photo.getBytes();
 		register.setImage(b);
+		register.setCountry(country);
+		register.setGender(gender);
 		int otp=CreatAccount.OtpGen();
 		register.setOtp(otp);
 		register.setPhonenumber(phonenumber);

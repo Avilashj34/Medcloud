@@ -8,15 +8,6 @@
 <title>Medcloud System</title>
 </head>
 <body>
-<h1>Securing Medcloud</h1>
-<a href="empform">Employee</a><br>
-<a href="registration"> Register Patient</a><br>
-<a href="Doctorregistration">Register Doctor</a><br>
-<a href="Hospitalregistration">Register Hospital</a><br>
-<a href="Home">View All Record</a><br>
-<a href="RoutineMedicalRecord"> Update Routine Record</a>
-</br>
-<!-- Doctorcontroller -->
-<a href="List_Of_Doctor"> Doctor List</a>
+<h1><a href="Home"> Click Here</a></h1>
 </body>
 </html>

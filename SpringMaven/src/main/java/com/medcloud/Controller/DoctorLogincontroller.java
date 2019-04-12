@@ -33,7 +33,7 @@ public class DoctorLogincontroller {
 	@RequestMapping("/Doctorlogin")
 	public String Showlogin(Model m)
 	{
-		m.addAttribute("command", new Doctorlogin());
+		//m.addAttribute("command", new Doctorlogin());
 		return "Doctorlogin";
 	}
 	

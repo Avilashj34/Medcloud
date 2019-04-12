@@ -1,7 +1,5 @@
 package com.medcloud.Controller;
 
-import java.io.*;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +59,7 @@ public class VerifySendController {
 	{
 		
 		//PrintWriter out=r 
+		
 		m.addAttribute("msg", "Patient Registered");
 		return "Hospitalhome";
 		

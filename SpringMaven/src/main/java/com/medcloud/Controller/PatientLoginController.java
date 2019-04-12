@@ -1,7 +1,6 @@
 package com.medcloud.Controller;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -24,6 +23,8 @@ import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Prescription;
 import com.medcloud.Model.Registration;
 import com.medcloud.Model.Report;
+import com.medcloud.Model.RoutineMedicalRecord;
+import com.medcloud.Model.Temperature;
 import com.medcloud.service.AES;
 import java.util.Map;
 
@@ -45,6 +46,8 @@ public class PatientLoginController extends HttpServlet {
 	
 	Prescription pres=new Prescription();
 	Doctor doc=new Doctor();
+	Temperature temp=new Temperature();
+	RoutineMedicalRecord routine=new RoutineMedicalRecord();
 	
 	private static String secretKey = "boooooooooom";
 	
@@ -96,7 +99,7 @@ public class PatientLoginController extends HttpServlet {
 	{
 		String emailCheck = "";
 		String encryptpass="";
-		int status=0;
+		int status=0,userid=0;
 		List<Registration> list1=patientdao.ToDecryptpassword(email);
 		for(Registration u:list1) 
 		{
@@ -110,15 +113,23 @@ public class PatientLoginController extends HttpServlet {
 		{
 			emailCheck = u.getEmailid();
 			status=u.getStatus();
+			userid=u.getUserid();
 		}
 		System.out.println(emailCheck);
 		if(status==1) 
 		{
 			if(emailCheck.equals(email) && decryptpassword.equals(password))
 			{
-				String msg = "Hello "+emailCheck;
 				session.setAttribute("patientemailsession",email);
-				m.addAttribute("msg", msg);  
+				m.addAttribute("msg", "Sucessfully Login");
+				routine = patientdao.getPrescription(userid);
+				m.addAttribute("height",routine.getHeight());
+				m.addAttribute("weight", routine.getWeight());
+				m.addAttribute("sugar", routine.getSugar());
+				m.addAttribute("pulse", routine.getPulse());
+				m.addAttribute("blood",routine.getBloodpressure());
+				List<Temperature> t=patientdao.getSensorData();
+				m.addAttribute("sensordata",t);
 				return "Patientdashboard";  
 			}
 			else

@@ -14,6 +14,7 @@ import com.medcloud.Model.Hospital;
 import com.medcloud.Model.Prescription;
 import com.medcloud.Model.Registration;
 import com.medcloud.Model.Report;
+import com.medcloud.Model.Temperature;
 
 public class BlManager {
 	
@@ -24,6 +25,7 @@ public class BlManager {
 	Registration r= new Registration();
 	Doctor d=new Doctor();
 	Prescription p=new Prescription();
+	Temperature t=new Temperature();
 
 	public void setJdbctemplate(JdbcTemplate jdbctemplate) {
 		this.jdbctemplate = jdbctemplate;
@@ -213,16 +215,12 @@ public class BlManager {
 				u.setDoctorid(rs.getInt(1));
 				u.setFirstname(rs.getString(2));
 				u.setLastname(rs.getString(3));
-				u.setEmailid(rs.getString(4));
-				u.setPassword(rs.getString(5));
+				u.setEmailid(rs.getString(5));
 				
 				return u;
 			}		
 		});
 	}
-
-
-
 
 	public Doctor getDoctorDataByid(int docid) {
 		// TODO Auto-generated method stub
@@ -231,13 +229,15 @@ public class BlManager {
 
 	}
 
-
-
-
 	public void insertdoctorid(int hid,Integer id) {
 		// TODO Auto-generated method stub
 		String sql="update hospital set doctorid='"+id+"' where hid="+hid+"";
 		jdbctemplate.update(sql);
-		
+	}
+	
+	public Temperature Taketempdata(String emailid)
+	{
+		String sql = "select * from SensorData where emailid=?";
+		return jdbctemplate.queryForObject(sql, new Object[] {emailid}, new BeanPropertyRowMapper<Temperature>(Temperature.class));
 	}
 }

@@ -16,6 +16,7 @@ public class Registration implements Serializable{
 	private Integer phonenumber;
 	private String emailid;
 	private String country;
+	private String gender;
 	private byte[] image;
 	private String address;
 	private String kyc;
@@ -202,6 +203,14 @@ public class Registration implements Serializable{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	

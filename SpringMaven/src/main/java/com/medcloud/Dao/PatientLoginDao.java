@@ -6,12 +6,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Hospital;
 import com.medcloud.Model.Registration;
+import com.medcloud.Model.RoutineMedicalRecord;
+import com.medcloud.Model.Temperature;
 
 public class PatientLoginDao {
 	
@@ -44,8 +47,9 @@ public class PatientLoginDao {
 			{
 				Registration u = new Registration();	
 				u.setEmailid(rs.getString(6));
-				u.setStatus(rs.getInt(15));
-				System.out.println(u.getEmailid());
+				u.setStatus(rs.getInt(16));
+				u.setUserid(rs.getInt(1));
+				System.out.println(u.getEmailid()+ " "+u.getStatus());
 				return u;
 			}
 			
@@ -127,7 +131,7 @@ public class PatientLoginDao {
 				u.setFirstname(rs.getString(2));
 				u.setLastname(rs.getString(3));
 				u.setEmailid(rs.getString(4));
-				u.setPassword(rs.getString(5));
+				u.setPassword(rs.getString(6));
 				
 				return u;
 			}		
@@ -139,5 +143,51 @@ public class PatientLoginDao {
 		String sql="select photo from patientinformation where userid=?";
 		Blob photo=jdbctemplate.queryForObject(sql,new Object[] {id},Blob.class);
 		return photo;
+	}
+
+	public List<Doctor> ShowTop3ResultOfDoctor() {
+		return jdbctemplate.query("SELECT * FROM doctor LIMIT 3", new RowMapper<Doctor>(){
+
+			@Override
+			public Doctor mapRow(ResultSet rs, int arg1) throws SQLException 
+			{
+				Doctor u = new Doctor();	
+				u.setDoctorid(rs.getInt(1));
+				u.setFirstname(rs.getString(2));
+				u.setLastname(rs.getString(3));
+				u.setEmailid(rs.getString(4));
+				u.setPassword(rs.getString(6));
+				
+				return u;
+			}		
+		});
+	}
+
+	public RoutineMedicalRecord getPrescription(int id) {
+		// TODO Auto-generated method stub		
+		String sql="SELECT * FROM routine_medical_recored WHERE userid=?";
+		return jdbctemplate.queryForObject(sql, new Object[] {id},new BeanPropertyRowMapper<RoutineMedicalRecord>(RoutineMedicalRecord.class));
+	}
+
+	public List<Temperature> getSensorData() {
+		// TODO Auto-generated method stub
+		return jdbctemplate.query("select * from SensorData", new RowMapper<Temperature>() {
+
+			@Override
+			public Temperature mapRow(ResultSet rs, int arg1) throws SQLException {
+				// TODO Auto-generated method stub
+				System.out.println(arg1);
+				Temperature t=new Temperature();
+				t.setTemperature(rs.getInt(3));
+				t.setBpm(rs.getInt(2));
+				t.setDate(rs.getDate(4));
+				return t;
+			}
+			
+			
+		});
 	}	
+	
+	
+	
 }

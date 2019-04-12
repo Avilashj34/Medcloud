@@ -9,7 +9,7 @@
 
 	<mvc:annotation-driven />
 	
-	<mvc:resources location="/resources/theme1/" mapping="/resources/**"></mvc:resources>
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
 	<context:component-scan base-package="com.medcloud.Controller"></context:component-scan>
 	

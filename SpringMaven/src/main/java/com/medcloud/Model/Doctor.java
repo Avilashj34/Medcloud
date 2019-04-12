@@ -14,7 +14,9 @@ public class Doctor implements Serializable{
 	private String password;
 	//private String confirmpassword;
 	private String description;
+	private String phonenumber;
 	private String specialty;
+	private String gender;
 	private Integer otp;
 	private Date otptime;
 	private Hospital hospId;
@@ -83,6 +85,18 @@ public class Doctor implements Serializable{
 	}
 	public void setHospId(Hospital hospId) {
 		this.hospId = hospId;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 	
 	

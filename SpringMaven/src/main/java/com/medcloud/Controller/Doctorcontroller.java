@@ -75,18 +75,27 @@ public class Doctorcontroller {
 	
 	@RequestMapping(value="/doctorprocess",method=RequestMethod.POST)
 	public String Doctorsave(@ModelAttribute("doctor")Doctor doctor,@RequestParam("photo") MultipartFile photo
-			,@RequestParam("emailid") String email,HttpSession session) throws IOException
+			,@RequestParam("emailid") String email,@RequestParam("phonenumber")String number,@RequestParam("gender")String gender,
+			HttpSession session) throws IOException
 	{
 		//three session hopitalidsession,patientemailsessiondoctoremailsession
+		/*try
+		{
 		int id=(int) session.getAttribute("hospitalidsession");
 		System.out.println("Hospital session is"+id);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}*/
 		byte[] b=photo.getBytes();
 		doctor.setImage(b);
-		System.out.println(id);
+		//System.out.println(id);
 		int otp=CreatAccount.OtpGen();
 		doctor.setOtp(otp);
+		doctor.setGender(gender);
+		doctor.setPhonenumber(number);
 		doctor.setOtptime(Calendar.getInstance().getTime());
-		h=bl.getDataById(id);
+		//h=bl.getDataById(id);
 		System.out.println("Object Hospital Session "+h +" "+h.getHospitalId() );
 		String subject="Otp";
 		String messageText="The Otp For Account Password is "+otp;
@@ -102,8 +111,7 @@ public class Doctorcontroller {
 			,@RequestParam("mobile") int mobile,Model m,HttpSession session)
 	{
 		
-		int hospid=1001;
-		hospital.setHospitalId(hospid++);
+		
 		hospital.setHospitalName(hospname);
 		hospital.setPassword(password);
 		hospital.setAddress(hospaddress);
@@ -159,6 +167,7 @@ public class Doctorcontroller {
 		m.addAttribute("doctorlist", list);
 		return "List_Of_Doctor";
 	}
+	
 	
 	
 	@RequestMapping(value="/{doctorid}" ,method=RequestMethod.GET)

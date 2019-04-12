@@ -114,12 +114,12 @@
         <th scope="col">long note</th>
       </tr>
       <tr>
-      <td>1</td>
-      <td>Reliance</td>
-      <td>Thane</td>
-      <td>Thane</td>
-      <td>938482093</td>
-      <td>ye kyu chaiye tujhe????????</td>
+      <c:forEach items="${list}" var="h">
+      	<td>${h.hospitalId }</td>
+      	<td>${h.hospitalName}</td>
+      	<td>${h.password}</td>
+      
+      </c:forEach>
       </tr>
     </thead>
   </table>

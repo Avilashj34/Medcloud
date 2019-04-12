@@ -16,12 +16,13 @@
 <h1>Welcome</h1>
 Patient Queue :${hospitalmsg}
 
-<a href="Hospitalregistration">Register Hospital Details</a>
-<a href="Hospitallogin">Hospital Login</a>
-<a href="Doctorregistration">New Doctor Register here</a>
-<a href="Doctorlogin">Doctor login here</a>
+<a href="Hospitalregistration">Register Hospital Details</a> </br>
+<a href="Hospitallogin">Hospital Login</a> </br>
+<a href="Doctorregistration">New Doctor Register here</a> </br>
+<a href="Doctorlogin">Doctor login here</a> </br>
 <a href="Patientverification"> Update Patient Report</a>
 </br>
+
 <a href="List_Of_Doctor">See Doctor List</a>
 <!-- Controller is VERIFYSENDCONTROLLER -->
 <form action="SendPatientToDoctor" method="post">

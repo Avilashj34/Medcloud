@@ -75,8 +75,8 @@ JdbcTemplate jdbctemplate;
 			{
 				Doctor u = new Doctor();	
 				
-				u.setEmailid(rs.getString(4));
-				u.setPassword(rs.getString(5));//getting value through index and index start from 1.
+				u.setEmailid(rs.getString(5));
+				u.setPassword(rs.getString(6));//getting value through index and index start from 1.
 				
 				System.out.println(u.getEmailid() +" "+ u.getPassword());
 				return u;

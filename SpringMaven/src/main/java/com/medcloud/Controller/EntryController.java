@@ -25,8 +25,25 @@ public class EntryController {
 	@Autowired
 	PatientLoginDao patientdao;
 	
+	@RequestMapping("/pr")
+	public String Showtemp(Model m){
+		return "pr";
+	}
+	
+	@RequestMapping("/header")
+	public String Showho(Model m){
+		return "header";
+	}
+	
+	@RequestMapping("/Single")
+	public String Showh(Model m){
+		return "Single";
+	}
+	
 	@RequestMapping("/Home")
 	public String Showhome(Model m){
+		List<Doctor> listd = patientdao.ShowTop3ResultOfDoctor();
+		m.addAttribute("doctorlist", listd);
 		return "Home";
 	}
 	

@@ -27,9 +27,9 @@ public class EmpDao {
 	public int insert(Registration r)
 	{
 		//Image  Insertion to be done using prepared statement else it pass the value address
-		String sql="insert into patientinformation(firstname,middlename,lastname,phonenumber,emailid,country,address,photo,kyc,password,age,otp,otptime,status) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		return jdbctemplate.update(sql,new Object[] {r.getFirstname(),r.getMiddlename(),r.getLastname(),r.getPhonenumber(),r.getEmailid(),r.getCountry(),r.getAddress(),r.getImage(),r.getKyc(),r.getPassword(),r.getAge(),r.getOtp(),r.getOtptime(),0});
+		String sql="insert into patientinformation(firstname,middlename,lastname,phonenumber,emailid,country,address,photo,kyc,password,gender,age,otp,otptime,status) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		return jdbctemplate.update(sql,new Object[] {r.getFirstname(),r.getMiddlename(),r.getLastname(),r.getPhonenumber(),r.getEmailid(),r.getCountry(),r.getAddress(),r.getImage(),r.getKyc(),r.getPassword(),r.getGender(),r.getAge(),r.getOtp(),r.getOtptime(),0});
 	}
 	
 	
@@ -44,16 +44,16 @@ public class EmpDao {
 		// TODO Auto-generated method stub
 		//ERROR
 		// /WEB-INF/jsp/Doctorregistration.jsp (line: 33, column: 61) equal symbol expected
-		String sql="insert into doctor(firstname,lastname,emailid,password,photo,description,specialty,otp,otptime)"
-				+ "values(?,?,?,?,?,?,?,?,?)";
-		return jdbctemplate.update(sql ,new Object[] {d.getFirstname(),d.getLastname(),d.getEmailid(),d.getPassword(),d.getImage(),d.getDescription(),d.getSpecialty(),d.getOtp(),d.getOtptime()});
+		String sql="insert into doctor(firstname,lastname,phonenumber,emailid,password,gender,photo,description,specialty,otp,otptime,status)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		return jdbctemplate.update(sql ,new Object[] {d.getFirstname(),d.getLastname(),d.getPhonenumber(),d.getEmailid(),d.getPassword(),d.getGender(),d.getImage(),d.getDescription(),d.getSpecialty(),d.getOtp(),d.getOtptime(),0});
 	}
 
 	public int hospitalinsert(Hospital h) {
 		// TODO Auto-generated method stub
 		String sql="insert into hospital(hid,hospitalname,password,address,city,phoneno,longnote,time)"
 				+ "values(?,?,?,?,?,?,?,?)";
-		return jdbctemplate.update(sql ,new Object[] {h.getHospitalId(),h.getHospitalName(),h.getPassword(),h.getAddress(),h.getCity(),h.getPhone(),h.getLongnote(),h.getDate()});
+		return jdbctemplate.update(sql ,new Object[] {h.getHospitalName(),h.getPassword(),h.getAddress(),h.getCity(),h.getPhone(),h.getLongnote(),h.getDate()});
 		
 	}
 }
