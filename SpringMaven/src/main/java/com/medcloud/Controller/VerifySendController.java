@@ -20,6 +20,11 @@ public class VerifySendController {
 	BlManager bl;
 	//https://stackoverflow.com/questions/42484197/how-to-fetch-data-from-database-to-select-tag-in-php
 	
+	@RequestMapping("Patienteditdashboard")
+	public String ShowPage(Model m) {
+		return "Patienteditdashboard";
+	}
+	
 	@RequestMapping(value="/patientauthentication" ,method=RequestMethod.POST)
 	public String Authenticate(@RequestParam("authenticationemail") String email,Model m,HttpSession session) {
 	
@@ -35,6 +40,7 @@ public class VerifySendController {
 		EmailService.sendMail(email, subject, messageText);
 		if(emailcheck.equals(email))
 		{
+			session.setAttribute("authemail", email);
 			return "Patientverification";	
 
 		}
@@ -42,16 +48,27 @@ public class VerifySendController {
 		return "error";	
 	}
 	
-	@RequestMapping(value="/otpprocess" , method=RequestMethod.GET)
+	@RequestMapping(value="/otpprocess" , method=RequestMethod.POST)
 	public String otpverification(@RequestParam("otp") int otp,Model m,HttpSession session)
 	{
 		int checkotp=(int) session.getAttribute("otp");
 		if(checkotp==otp) {
-		return "Dashboard";
+		return "Patienteditdashboard";
 		}
 		else
+		{
 			m.addAttribute("otperror", "Entered Wromg otp");
 			return "Error";
+		}
+	}
+	
+	@RequestMapping(value="/updateprescription",method=RequestMethod.POST)
+	public String UpdateData(Model m,@RequestParam("height")Integer height,@RequestParam("weight")Integer weight,@RequestParam("pulse")Integer pulse,
+			@RequestParam("bloodpressure")Integer bloodpressure,@RequestParam("sugar")Integer sugar,@RequestParam("id")Integer rid)
+	{
+		bl.UpdatePrescriptionData(height,weight,pulse,bloodpressure,sugar,rid);
+		
+		return "Hospitalhome";
 	}
 	
 	@RequestMapping(value="/SendPatientToDoctor", method=RequestMethod.POST)

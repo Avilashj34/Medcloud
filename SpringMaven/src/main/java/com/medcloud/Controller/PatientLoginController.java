@@ -30,10 +30,6 @@ import java.util.Map;
 
 @Controller
 public class PatientLoginController extends HttpServlet {
-
-	/**
-	 * 
-	 */
 	
 	//All Record display
 	private static final long serialVersionUID = 377036863363458261L;
@@ -51,7 +47,12 @@ public class PatientLoginController extends HttpServlet {
 	
 	private static String secretKey = "boooooooooom";
 	
-	
+	@RequestMapping("/plogout")
+	public String Plogout(Model m)
+	{
+		m.addAttribute("logoutmsg","Logged-out");
+		return "Patientlogin";
+	}
 	
 	@RequestMapping("/Patientlogin")
 	public String ShowDoctorForm(Model m)
@@ -130,6 +131,7 @@ public class PatientLoginController extends HttpServlet {
 				m.addAttribute("blood",routine.getBloodpressure());
 				List<Temperature> t=patientdao.getSensorData();
 				m.addAttribute("sensordata",t);
+				m.addAttribute("loginmsg","Sucessfully Logged-In");
 				return "Patientdashboard";  
 			}
 			else
@@ -183,7 +185,7 @@ public class PatientLoginController extends HttpServlet {
 		byte[] img=image.getBytes();
 		r.setReport(img);
 		String userid=bl.getdataByEmail(email);
-		int pid=Integer.parseInt(userid);
+		Integer pid=Integer.parseInt(userid);
 		System.out.println(email +" "+pid);
 		bl.savereport(r,pid);
 		return "Patientdashboard";	

@@ -123,7 +123,7 @@
 							<input type="text" class="form-control" placeholder=" " name="Password" id="password1" required="">
 						</div>
 						<div class="right-storesl">
-							<input type="submit" class="form-control" value="Register">
+							<input type="submit" class="form-control" value="Submit">
 						</div>
 						<div class="sub-storesl">
 							<div class="custom-control custom-checkbox mr-sm-2">
@@ -166,13 +166,7 @@
 						<!-- cart details -->
 						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
 							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
+								
 							</div>
 						</div>
 						<!-- //cart details -->
@@ -274,23 +268,21 @@
 		
 			<div class="checkout-left">
 				<div class="address_form_electronics mt-sm-5 mt-4">
-					<h4 class="mb-sm-4 mb-3">Enter Your Credential</h4>
-					<h4>${warning }</h4>
+					<h4>${warning }</h4><br>
 					<h5>${msg}</h5>
-					<form action="doctorlogin" method="post" class="creditly-card-form electronicsinfo_form" >
 						<div class="creditly-wrapper electronics-stroe, stores_electronicsits_wrapper">
 							<div class="information-wrapper">
 								<div class="first-row">
-									<div class="controls form-group">
-									Enter Your Email
-										<input class="billing-address-name form-control" type="text" name="emailid" placeholder="Enter Email id" required="">
-									</div>
+									
 									<div class="stores_electronicsits_card_number_grids">								
 										${status}
 ${adddoctor}
 ${otperror}
 ${msg}
 Return to Home Page <a href="Hospitalhome">here</a>
+<br>
+<br>
+${adminerror}
 									
 										
 										</div>
@@ -302,16 +294,11 @@ Return to Home Page <a href="Hospitalhome">here</a>
 								</div>
 							</div>
 						</div>
-						<input type="submit" value="Login">
-					</form>
 					
-					<div class="checkout-right-basket">
-						<a href="registration"> <i>Not Register? Register here</i></a>
-					</div>
+					
 				</div>
 			</div>
 		</div>
-	</div>
 		<div class="electronics-sometext py-md-5 py-sm-4 py-3">
 			<div class="container">
 				<!-- brands -->

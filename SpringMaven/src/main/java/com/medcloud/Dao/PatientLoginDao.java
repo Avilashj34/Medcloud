@@ -3,6 +3,7 @@ package com.medcloud.Dao;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Hospital;
 import com.medcloud.Model.Registration;
+import com.medcloud.Model.Report;
 import com.medcloud.Model.RoutineMedicalRecord;
 import com.medcloud.Model.Temperature;
 
@@ -144,6 +146,20 @@ public class PatientLoginDao {
 		Blob photo=jdbctemplate.queryForObject(sql,new Object[] {id},Blob.class);
 		return photo;
 	}
+	
+	public Blob getDoctorPhotoById(int id) {
+		// TODO Auto-generated method stub
+		String sql="select photo from doctor where doctorid=?";
+		Blob photo=jdbctemplate.queryForObject(sql,new Object[] {id},Blob.class);
+		return photo;
+	}
+	
+	public Blob getReportById(int id) {
+		// TODO Auto-generated method stub
+		String sql="select report from report where id=?";
+		Blob photo=jdbctemplate.queryForObject(sql,new Object[] {id},Blob.class);
+		return photo;
+	}
 
 	public List<Doctor> ShowTop3ResultOfDoctor() {
 		return jdbctemplate.query("SELECT * FROM doctor LIMIT 3", new RowMapper<Doctor>(){
@@ -185,6 +201,23 @@ public class PatientLoginDao {
 			}
 			
 			
+		});
+	}
+
+	public List<Report> getReportData(int userid) {
+		// TODO Auto-generated method stub
+		String sql="select * from report where userid='"+userid+"'";
+		List<Report> list=new ArrayList<Report>();
+		return jdbctemplate.query(sql, new RowMapper<Report>(){
+			@Override
+			public Report mapRow(ResultSet rs, int arg1) throws SQLException 
+			{
+				Report u = new Report();	
+				u.setReport(rs.getBytes(2));
+				u.setUserid(rs.getInt(3));
+				u.setHid(rs.getInt(4));
+				return u;
+			}		
 		});
 	}	
 	

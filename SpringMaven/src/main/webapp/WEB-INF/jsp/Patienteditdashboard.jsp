@@ -1,9 +1,16 @@
+<%@page import="com.medcloud.Model.RoutineMedicalRecord"%>
+<%@page import="com.medcloud.Model.Registration"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
     <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <%@page import="java.util.*"  %>
+    <%@page import="java.io.OutputStream" %>
+    <%@page import="com.medcloud.Dao.BlManager" %>
+     <%@page import="com.medcloud.Controller.*" %>
+      <%@page import="com.medcloud.Model.Hospital" %>
+      <%@page import="java.sql.*"%>
 
-<html >
+<html>
 
 <head>
 
@@ -28,7 +35,7 @@
 <spring:url value="resources/js/jquery-2.2.3.min.js" var="jquery"></spring:url>
 <spring:url value="resources/js/SmoothScroll.min.js" var="Smooth"></spring:url>
 
-	<title>MedCloud System</title>
+	<title>MedCloud System | Patient Edit</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
@@ -66,6 +73,59 @@
 </head>
 
 <body>
+
+<%
+
+
+Hospital d=new Hospital();
+Registration r=new Registration();
+RoutineMedicalRecord rou=new RoutineMedicalRecord();
+BlManager bl=new BlManager();
+
+Integer email=(Integer)session.getAttribute("hospitalsession");
+String patientemail=(String)session.getAttribute("authemail");
+System.out.println("Email is :"+email);
+if(patientemail==null){
+	response.sendRedirect("Hospitalhome");
+	
+}
+else
+{
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://medicaltreatment.cyd5gs2hapgv.ap-northeast-1.rds.amazonaws.com:3306/medicaltreatment","root","medcloud");
+	Statement st=con.createStatement();
+	ResultSet rs= st.executeQuery("select * from hospital where hid='"+email+"'");
+	
+	while(rs.next())
+	{
+	System.out.println(rs.getString(2));
+	d.setHospitalName(rs.getString(2));
+	d.setHospitalId(rs.getInt(1));
+	d.setAddress(rs.getString(4));
+	}
+	ResultSet rs1=st.executeQuery("select * from patientinformation where emailid='"+patientemail+"'");
+	while(rs1.next())
+	{
+		r.setUserid(rs1.getInt(1));
+		r.setFirstname(rs1.getString(2));
+		r.setLastname(rs1.getString(3));
+		r.setAge(rs1.getInt(13));
+	}
+	ResultSet rs2=st.executeQuery("select * from routine_medical_recored where userid='"+r.getUserid()+"'");
+	while(rs2.next())
+	{
+		rou.setId(rs.getInt(1));
+		rou.setWeight(rs2.getInt(3));
+		rou.setHeight(rs2.getInt(2));
+		rou.setBloodpressure(rs2.getInt(5));
+		rou.setPulse(rs2.getInt(4));
+		rou.setSugar(rs2.getInt(6));
+	}
+	//d=bl.SearchDoctor(email);
+	
+ %>
+ 
+
 	<!-- top-header -->
 	<div class="electronics-main-top">
 		<div class="container-fluid">
@@ -81,7 +141,10 @@
 						<li class="text-center border-right text-white">
 							<i class="fas fa-phone mr-2"></i> +91-8097810652
 						</li>
-						
+						<li class="text-center border-right text-white">
+							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+								<i class="fas fa-sign-in-alt mr-2"></i> Log Out </a>
+						</li>
 						<li class="text-center text-white">
 							<a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
 								<i class="fas fa-sign-out-alt mr-2"></i>Give FeedBack </a>
@@ -97,13 +160,33 @@
 
 	<!-- modals -->
 	<!-- log in -->
-	
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center">Are You Sure You Want To Logout</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+						
+						<div class="right-storesl">
+						<a href="logout">
+							<input type="submit" class="form-control" value="Confirm">
+						</a>
+						</div>
+						
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- register -->
 	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
+					<h5 class="modal-title">FeedBack Form</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -120,7 +203,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Message</label>
-							<input type="text" class="form-control" placeholder=" " name="Password" id="password1" required="">
+							<input type="password" class="form-control" placeholder="Enter  " name="Confirm Password" id="password2" required="">
 						</div>
 						<div class="right-storesl">
 							<input type="submit" class="form-control" value="Register">
@@ -206,7 +289,6 @@
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Patientlogin">Patient Login</a>
 								<a class="dropdown-item" href="registration">Patient Register</a>
 							</div>
 						</li>
@@ -215,22 +297,16 @@
 								Doctor
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Doctorlogin">Doctor Login</a>
-								<a class="dropdown-item" href="Doctorregistration">Doctor Register</a>
+								<a class="dropdown-item" href="Doctorregistration"> Register Doctor</a>
 							</div>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="about.html">About Us</a>
+							<a class="nav-link" href="">Update Patient Record</a>
 						</li>
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Hospital
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Hospitallogin">Hospital Login</a>
-								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
-							</div>
+						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+							<a class="nav-link" href="about">About Us</a>
 						</li>
+						
 						<li class="nav-item">
 							<a class="nav-link" href="contact.html">Contact Us</a>
 						</li>
@@ -242,7 +318,6 @@
 	</div>
 	<!-- //navigation -->
 
-	
 	<!-- banner-2 -->
 	<div class="page-head_electronics_info_storesl">
 
@@ -257,77 +332,272 @@
 						<a href="index.html">Home</a>
 						<i>|</i>
 					</li>
-					<li>Hospital Registration</li>
+					<li>Update Page</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //page -->
 
-	<div class="privacy py-sm-5 py-4">
+	<!-- Single Page -->
+	<div class="banner-bootom-stores-electronicsits py-5">
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
 			<h3 class="tittle-storesl text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>R</span>egistration
-			</h3>
-		
-			<div class="checkout-left">
-				<div class="address_form_electronics mt-sm-5 mt-4">
-					<h4 class="mb-sm-4 mb-3">Add  Details</h4>
-					<form action="hospitalprocess" method="post" class="creditly-card-form electronicsinfo_form" >
-						<div class="creditly-wrapper electronics-stroe, stores_electronicsits_wrapper">
-							<div class="information-wrapper">
-								<div class="first-row">
-									<div class="controls form-group">
-										<input class="billing-address-name form-control" type="text" name="hospname" placeholder="Hospital Name" required="">
-									</div>
-									<div class="stores_electronicsits_card_number_grids">								
-										<div class="stores_electronicsits_card_number_grid_right form-group">
-											<div class="controls">
-												<input type="text" class="form-control" placeholder="Description" name="longnote" required="">
-											</div>
-										</div>
-										<div class="stores_electronicsits_card_number_grid_left form-group">
-											<div class="controls">
-												<input type="text" class="form-control" placeholder="Mobile Number" name="mobile" required="">
-											</div>
-										</div>
-										
-										<div class="stores_electronicsits_card_number_grid_left form-group">
-											<div class="controls">
-												<input type="password" class="form-control" placeholder="Password" name="password"  required="">
-											</div>
-										</div>
-										<div class="stores_electronicsits_card_number_grid_left form-group">
-											<div class="controls">
-												<input type="password" class="form-control" placeholder="Confirm Password"  required="">
-											</div>
-										</div>
-										
-									</div>
-									<div class="controls form-group">
-										<input type="text" class="form-control" placeholder="Address" name="hospaddress" required="" />
-									</div>
-									<div class="controls form-group">
-										<select class="option-storesls" name="city">
-											<option id="city">Kalyan</option>
-											<option value="india">Thane</option>
-											<option value="u">Other</option>
-										</select>
-									</div>
-									
-								</div>
+				<span>|</span><%=d.getHospitalName() %>
+				<span>|</span>Page</h3>
+			<!-- //tittle heading -->
+			<div class="row">
+				<div class="col-lg-5 col-md-8 single-right-left ">
+					<div class="grid images_3_of_2">
+						<div class="single-infoelectronics">
+							<ul >
+								<li>
+								<%=d.getHospitalName() %>
+								</li>
+								<li class="mb-3">
+								Patient Name :<%=r.getFirstname() +"  "+ r.getLastname()%>
+								Age is : <%=r.getAge() %>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
+					<h3 class="mb-3">Update Record</h3>
+					<p class="mb-3">
+						<span class="item_price">Age is : 21</span>
+						<label>Additional Information</label>
+					</p>
+					<div class="single-infoelectronics">
+						<ul>
+							<li class="mb-3">
+								Speciality In :
+							</li>
+							<!--Add More -->
+						</ul>
+					</div>
+					<div class="product-single-storesl">
+						
+						<p class="my-sm-4 my-3">
+							<i class="fas fa-retweet mr-3"></i>Update Data
+							<form action="updateprescription" method="post">
+							<input type="hidden" name="id" value="<%=rou.getId() %>"><br>
+								Weight : <input type="text" name="weight" value="<%=rou.getWeight()%>"/><br>
+								Blood Pressure : <input type="text" name="bloodpressure" value="<%=rou.getBloodpressure()%>"/><br>
+								Height : <input type="text" name="height" value="<%= rou.getHeight()%>"/><br>
+								Pulse : <input type="text" name="pulse" value="<%=rou.getPulse()%>"/><br>
+								Sugar : <input type="text" name="sugar" value="<%=rou.getSugar()%>"/><br>
+								<input type="submit" value="Update Data">
+							</form>
+						</p>
+						
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Single Page -->
+
+	<!-- middle section -->
+	<div class="join-storesl1 py-sm-5 py-4">
+		<div class="container py-xl-4 py-lg-2">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="join-electronics text-left p-4">
+						<div class="row">
+							<div class="col-sm-7 offer-name">
+								<h6>Smooth, Rich & Loud Audio</h6>
+								<h4 class="mt-2 mb-3">Branded Headphones</h4>
+								<p>Sale up to 25% off all in store</p>
+							</div>
+							<div class="col-sm-5 offerimg-storesl">
+								<img src="${off1}" alt="" class="img-fluid">
 							</div>
 						</div>
-						<input type="submit" value="Submit Your Data">
-					</form>
-					<div class="checkout-right-basket">
-						
+					</div>
+				</div>
+				<div class="col-lg-6 mt-lg-0 mt-5">
+					<div class="join-electronics text-left p-4">
+						<div class="row ">
+							<div class="col-sm-7 offer-name">
+								<h6>A Bigger Phone</h6>
+								<h4 class="mt-2 mb-3">Smart Phones 5</h4>
+								<p>Free shipping order over $100</p>
+							</div>
+							<div class="col-sm-5 offerimg-storesl">
+								<img src="${off2 }" alt="" class="img-fluid">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- middle section -->
+
+	<!-- footer -->
+	<footer>
+		<div class="footer-top-first">
+			<div class="container py-md-5 py-sm-4 py-3">
+				<!-- footer first section -->
+				<h2 class="footer-top-head-storesl font-weight-bold mb-2">Electronics :</h2>
+				<p class="footer-main mb-4">
+					more</p>
+				<!-- //footer first section -->
+				<!-- footer second section -->
+				<div class="row storesl-grids-footer border-top border-bottom py-sm-4 py-3">
+					<div class="col-md-4 offer-footer">
+						<div class="row">
+							<div class="col-4 icon-fot">
+								<i class="fas fa-dolly"></i>
+							</div>
+							<div class="col-8 text-form-footer">
+								<h3>Free Shipping</h3>
+								<p>on orders over $100</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 offer-footer my-md-0 my-4">
+						<div class="row">
+							<div class="col-4 icon-fot">
+								<i class="fas fa-shipping-fast"></i>
+							</div>
+							<div class="col-8 text-form-footer">
+								<h3>Fast Delivery</h3>
+								<p>World Wide</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 offer-footer">
+						<div class="row">
+							<div class="col-4 icon-fot">
+								<i class="far fa-thumbs-up"></i>
+							</div>
+							<div class="col-8 text-form-footer">
+								<h3>Big Choice</h3>
+								<p>of Products</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //footer second section -->
+			</div>
+		</div>
+		<!-- footer third section -->
+		<div class="storesl-middlefooter-sec">
+			<div class="container py-md-5 py-sm-4 py-3">
+				<div class="row footer-info stores-electronicsits-info">
+					<!-- footer categories -->
+					<div class="col-md-3 col-sm-6 footer-grids">
+						<h3 class="text-white font-weight-bold mb-3">Categories</h3>
+						<ul>
+							<li class="mb-3">
+								<a href="product.html">Mobiles </a>
+							</li>
+							<li class="mb-3">
+								<a href="product.html">Computers</a>
+							</li>
+							
+							<li class="mb-3">
+								<a href="product.html">Washing Machines</a>
+							</li>
+							<li>
+								<a href="product2.html">Refrigerators</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //footer categories -->
+					<!-- quick links -->
+					<div class="col-md-3 col-sm-6 footer-grids mt-sm-0 mt-4">
+						<h3 class="text-white font-weight-bold mb-3">Quick Links</h3>
+						<ul>
+							<li class="mb-3">
+								<a href="about.html">About Us</a>
+							</li>
+							<li class="mb-3">
+								<a href="contact.html">Contact Us</a>
+							</li>
+							<li class="mb-3">
+								<a href="help.html">Help</a>
+							</li>
+							<li class="mb-3">
+								<a href="faqs.html">Faqs</a>
+							</li>
+							<li class="mb-3">
+								<a href="terms.html">Terms of use</a>
+							</li>
+							<li>
+								<a href="privacy.html">Privacy Policy</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6 footer-grids mt-md-0 mt-4">
+						<h3 class="text-white font-weight-bold mb-3">Get in Touch</h3>
+						<ul>
+							<li class="mb-3">
+								<i class="fas fa-map-marker"></i> 123 Sebastian, USA.</li>
+							<li class="mb-3">
+								<i class="fas fa-mobile"></i> 333 222 3333 </li>
+							<li class="mb-3">
+								<i class="fas fa-phone"></i> +222 11 4444 </li>
+							<li class="mb-3">
+								<i class="fas fa-envelope-open"></i>
+								<a href="mailto:example@mail.com"> mail 1@example.com</a>
+							</li>
+							<li>
+								<i class="fas fa-envelope-open"></i>
+								<a href="mailto:example@mail.com"> mail 2@example.com</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6 footer-grids storesl-electronicsits mt-md-0 mt-4">
+						<!-- newsletter -->
+						<h3 class="text-white font-weight-bold mb-3">Newsletter</h3>
+						<p class="mb-3">Free Delivery on your first order!</p>
+						<form action="#" method="post">
+							<div class="form-group">
+								<input type="email" class="form-control" placeholder="Email" name="email" required="">
+								<input type="submit" value="Go">
+							</div>
+						</form>
+						<!-- //newsletter -->
+						<!-- social icons -->
+						<div class="footer-grids  storesl-socialmk mt-3">
+							<h3 class="text-white font-weight-bold mb-3">Follow Us on</h3>
+							<div class="social">
+								<ul>
+									<li>
+										<a class="icon fb" href="#">
+											<i class="fab fa-facebook-f"></i>
+										</a>
+									</li>
+									<li>
+										<a class="icon tw" href="#">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</li>
+									<li>
+										<a class="icon gp" href="#">
+											<i class="fab fa-google-plus-g"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- //social icons -->
+					</div>
+				</div>
+				<!-- //quick links -->
+			</div>
+		</div>
+		<!-- //footer third section -->
+
+		<!-- footer fourth section -->
 		<div class="electronics-sometext py-md-5 py-sm-4 py-3">
 			<div class="container">
 				<!-- brands -->
@@ -335,10 +605,10 @@
 					<h5 class="font-weight-bold mb-2">Doctor :</h5>
 					<ul>
 						<li class="m-sm-1">
-							<a href="Doctorregistration" class="border-right pr-2">Registration</a>
+							<a href="product.html" class="border-right pr-2">Android Phones</a>
 						</li>
 						<li class="m-sm-1">
-							<a href="Doctorlogin" class="border-right pr-2">Login</a>
+							<a href="product.html" class="border-right pr-2">Smartphones</a>
 						</li>
 						
 					</ul>
@@ -347,10 +617,10 @@
 					<h5 class="font-weight-bold mb-2">Patient :</h5>
 					<ul>
 						<li class="m-sm-1">
-							<a href="registration" class="border-right pr-2">Registration </a>
+							<a href="product.html" class="border-right pr-2">Laptops </a>
 						</li>
 						<li class="m-sm-1">
-							<a href="Patientlogin" class="border-right pr-2">Login</a>
+							<a href="product.html" class="border-right pr-2">Printers</a>
 						</li>
 						
 					</ul>
@@ -359,10 +629,10 @@
 					<h5 class="font-weight-bold mb-2">Hospital :</h5>
 					<ul>
 						<li class="m-sm-1">
-							<a href="Hospitalregistration" class="border-right pr-2">Registration</a>
+							<a href="product2.html" class="border-right pr-2">TVs & DTH</a>
 						</li>
 						<li class="m-sm-1">
-							<a href="Hospitallogin" class="border-right pr-2">Login</a>
+							<a href="product2.html" class="border-right pr-2">Home Theatre Systems</a>
 						</li>
 						
 					</ul>
@@ -378,7 +648,7 @@
 	<!-- copyright -->
 	<div class="copy-right py-3">
 		<div class="container">
-			<p class="text-center text-white">© 2018 Med-Cloud.</p>
+			<p class="text-center text-white">© 2018 Med-Cloud. All rights reserved.</p>
 		</div>
 	</div>
 
@@ -530,7 +800,7 @@
 	<script src="${boot}"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
-
+<%} %>
 </body>
 
 </html>

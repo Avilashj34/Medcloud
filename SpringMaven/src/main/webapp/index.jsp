@@ -8,6 +8,8 @@
 <title>Medcloud System</title>
 </head>
 <body>
-<h1><a href="Home"> Click Here</a></h1>
+<h1><a href="Home"> Visit To Home Page</a></h1>
+<br>
+<h1><a href="adminlogin"> Admin Page </a></h1>
 </body>
 </html>

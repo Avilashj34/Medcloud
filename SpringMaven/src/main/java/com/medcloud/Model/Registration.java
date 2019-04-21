@@ -13,7 +13,7 @@ public class Registration implements Serializable{
 	private String firstname;
 	private String middlename;
 	private String lastname;
-	private Integer phonenumber;
+	private String phonenumber;
 	private String emailid;
 	private String country;
 	private String gender;
@@ -30,7 +30,7 @@ public class Registration implements Serializable{
 
 	
 	
-	public Registration(Integer userid, String firstname, String middlename, String lastname, Integer phonenumber,
+	public Registration(Integer userid, String firstname, String middlename, String lastname, String phonenumber,
 			String emailid, String country, byte[] image, String address, String kyc, String password, int age, Integer otp,
 			Date otptime, Hospital hospital) {
 		super();
@@ -94,12 +94,12 @@ public class Registration implements Serializable{
 	}
 
 
-	public Integer getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
 
 
-	public void setPhonenumber(Integer phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 

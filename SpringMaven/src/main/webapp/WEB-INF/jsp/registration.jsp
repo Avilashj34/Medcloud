@@ -142,7 +142,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
+					<h5 class="modal-title">FeedBack</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -158,15 +158,12 @@
 							<input type="email" class="form-control" placeholder=" " name="Email" required="">
 						</div>
 						<div class="form-group">
-							<label class="col-form-label">Password</label>
-							<input type="password" class="form-control" placeholder=" " name="Password" id="password1" required="">
+							<label class="col-form-label">Message</label>
+							<input type="text" class="form-control" placeholder=" " name="Password" id="password1" required="">
 						</div>
-						<div class="form-group">
-							<label class="col-form-label">Confirm Password</label>
-							<input type="password" class="form-control" placeholder="Enter  " name="Confirm Password" id="password2" required="">
-						</div>
+						
 						<div class="right-storesl">
-							<input type="submit" class="form-control" value="Register">
+							<input type="submit" class="form-control" value="Submit">
 						</div>
 						<div class="sub-storesl">
 							<div class="custom-control custom-checkbox mr-sm-2">
@@ -249,8 +246,8 @@
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Patient Login</a>
-								<a class="dropdown-item" href="product2.html">Patient Register</a>
+								<a class="dropdown-item" href="Patientlogin">Patient Login</a>
+								<a class="dropdown-item" href="registration">Patient Register</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
@@ -258,10 +255,9 @@
 								Doctor
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Doctor Login</a>
-								<a class="dropdown-item" href="product2.html">Doctor Register</a>
+								<a class="dropdown-item" href="Doctorlogin">Doctor Login</a>
+								<a class="dropdown-item" href="Doctorregistration">Doctor Register</a>
 							</div>
-						</li>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="about.html">About Us</a>
@@ -271,8 +267,8 @@
 								Hospital
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product">Hospital Login</a>
-								<a class="dropdown-item" href="product2.html">Hospital Register</a>
+								<a class="dropdown-item" href="Hospitallogin">Hospital Login</a>
+								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
 							</div>
 						</li>
 						<li class="nav-item">
@@ -348,7 +344,12 @@
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">
 											<div class="controls">
-												<input type="text" class="form-control" placeholder="Password" name="password" required="">
+												<input type="password" class="form-control" placeholder="Password" name="password" required="">
+											</div>
+										</div>
+										<div class="stores_electronicsits_card_number_grid_left form-group">
+											<div class="controls">
+												<input type="password" class="form-control" placeholder="Confirm Password" name="password" required="">
 											</div>
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">

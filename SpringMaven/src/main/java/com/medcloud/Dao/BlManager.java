@@ -44,7 +44,7 @@ public class BlManager {
 				r.setFirstname(rs.getString(2));
 				r.setMiddlename(rs.getString(3));
 				r.setLastname(rs.getString(4));
-				r.setPhonenumber(rs.getInt(5));
+				r.setPhonenumber(rs.getString(5));
 				r.setEmailid(rs.getString(6));
 				r.setAddress(rs.getString(8));
 				r.setImage(rs.getBytes(9));
@@ -100,7 +100,7 @@ public class BlManager {
 				r.setFirstname(rs.getString(2));
 				r.setMiddlename(rs.getString(3));
 				r.setLastname(rs.getString(4));
-				r.setPhonenumber(rs.getInt(5));
+				r.setPhonenumber(rs.getString(5));
 				r.setEmailid(rs.getString(6));
 				r.setAddress(rs.getString(8));
 				r.setImage(rs.getBytes(9));
@@ -150,8 +150,7 @@ public class BlManager {
 		// TODO Auto-generated method stub
 		
 		String sql="select doctorid from doctor where emailid=?";
-		return jdbctemplate.queryForObject(sql,new Object[] {demail}, String.class);
-		
+		return jdbctemplate.queryForObject(sql,new Object[] {demail}, String.class);		
 	}
 
 	public void Saveprescription(Prescription p,int id3,int pid) {
@@ -162,10 +161,10 @@ public class BlManager {
 		//,'"+p.getDoctor()+"','"+p.getRegister()+"'
 	}
 	
-	public void savereport(Report r, int pid) {
+	public void savereport(Report r, Integer pid) {
 		// TODO Auto-generated method stub
-		String sql="insert into report(report,userid) values('"+r.getReport()+"','"+pid+"')";
-		jdbctemplate.update(sql);
+		String sql="insert into report(report,userid) values(?,?)";
+		jdbctemplate.update(sql,new Object[] {r.getReport(),pid});
 	}
 
 
@@ -240,4 +239,19 @@ public class BlManager {
 		String sql = "select * from SensorData where emailid=?";
 		return jdbctemplate.queryForObject(sql, new Object[] {emailid}, new BeanPropertyRowMapper<Temperature>(Temperature.class));
 	}
+	
+	public Doctor SearchDoctor(String email)
+	{
+		
+		String sql="select * from doctor where emailid=?";
+		return jdbctemplate.queryForObject(sql,new Object[] {email},new BeanPropertyRowMapper<Doctor>(Doctor.class));
+	}
+
+	public void UpdatePrescriptionData(int height,int weight,int pulse,int bloodpressure,int sugar,int rid) {
+		String sql=" UPDATE routine_medical_recored SET height= '"+height+"',weight='"+weight+"',pulse='"+pulse+"',bloodpressure='"+bloodpressure+"',sugar='"+sugar+"' WHERE id='"+rid+"'";
+		jdbctemplate.update(sql);
+	}
+
+
+	
 }

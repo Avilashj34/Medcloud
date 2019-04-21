@@ -206,8 +206,8 @@
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Patient Login</a>
-								<a class="dropdown-item" href="product2.html">Patient Register</a>
+								<a class="dropdown-item" href="Patientlogin">Patient Login</a>
+								<a class="dropdown-item" href="registration">Patient Register</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
@@ -215,10 +215,9 @@
 								Doctor
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Doctor Login</a>
-								<a class="dropdown-item" href="product2.html">Doctor Register</a>
+								<a class="dropdown-item" href="Doctorlogin">Doctor Login</a>
+								<a class="dropdown-item" href="Doctorregistration">Doctor Register</a>
 							</div>
-						</li>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="about.html">About Us</a>
@@ -228,8 +227,8 @@
 								Hospital
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product">Hospital Login</a>
-								<a class="dropdown-item" href="product2.html">Hospital Register</a>
+								<a class="dropdown-item" href="Hospitallogin">Hospital Login</a>
+								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
 							</div>
 						</li>
 						<li class="nav-item">

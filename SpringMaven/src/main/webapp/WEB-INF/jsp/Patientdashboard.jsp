@@ -1,3 +1,6 @@
+<%@page import="com.medcloud.Dao.BlManager"%>
+<%@page import="com.medcloud.Model.Temperature"%>
+<%@page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
     <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -28,7 +31,7 @@
 <spring:url value="resources/js/jquery-2.2.3.min.js" var="jquery"></spring:url>
 <spring:url value="resources/js/SmoothScroll.min.js" var="Smooth"></spring:url>
 
-	<title>${fname} profile</title>
+	<title>Med-Cloud | ${fname} profile</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
@@ -67,6 +70,8 @@
 
 <body>
 <%
+Temperature t= new Temperature();
+BlManager bl=new BlManager();
 String email=(String)session.getAttribute("patientemailsession");
 Registration r;
 if(email==null)
@@ -74,15 +79,28 @@ if(email==null)
 	response.sendRedirect("Patientlogin");
 }
 else
+	
 {
-	System.out.println(email);
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://medicaltreatment.cyd5gs2hapgv.ap-northeast-1.rds.amazonaws.com:3306/medicaltreatment","root","medcloud");
+		Statement st=con.createStatement();
+		ResultSet rs= st.executeQuery("select * from SensorData");
+		
+		while(rs.next())
+		{
+		System.out.println(rs.getDate(4));
+		t.setTemperature(rs.getInt(3));
+		t.setBpm(rs.getInt(2));
+		System.out.println(t.getTemperature());
+		
+		
 %>
 	<!-- top-header -->
 	<div class="electronics-main-top">
 		<div class="container-fluid">
 			<div class="row main-top-storesl py-2">
 				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Info
+					<p class="text-white text-lg-left text-center">${loginmsg}
 						<i class="fas fa-shopping-cart ml-1"></i>
 					</p>
 				</div>
@@ -115,11 +133,20 @@ else
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title text-center">
-					<a href="logout">Confirm Logout</a></h5>
-			
+					<h5 class="modal-title text-center">Are You Sure You Want To Logout</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				
+				<div class="modal-body">
+						
+						<div class="right-storesl">
+						<a href="plogout">
+							<input type="submit" class="form-control" value="Confirm">
+						</a>
+						</div>
+						
+				</div>
 			</div>
 		</div>
 	</div>
@@ -232,17 +259,18 @@ else
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Updatereport">Patient Update Report</a>
+								<a class="dropdown-item" href="Updatereport">Update Report</a>
+								<a class="dropdown-item" href="Viewreport">View Report</a>
 								<a class="dropdown-item" href="Patientprofile">Patient profile</a>
 							</div>
 						</li>
 						
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="about.html">About Us</a>
+							<a class="nav-link" href="about">About Us</a>
 						</li>
 						
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="contact">Contact Us</a>
 						</li>
 						
 					</ul>
@@ -290,6 +318,7 @@ else
 						<ul>
 							<li class="mb-3">
 								<i><a href="Updatereport">Update Report</a></i>
+								
 							</li>
 							<!--Add More -->
 						</ul>
@@ -305,7 +334,7 @@ else
 							
 						</ul>
 						<p class="my-sm-4 my-3">
-							<i class="fas fa-retweet mr-3"></i><a href="#">Take Test  </a>
+							<i class="fas fa-retweet mr-3"></i><a href="PatientTest">Take Test  </a>
 						</p>
 					</div>
 					
@@ -328,7 +357,7 @@ else
 						
 						<p class="my-sm-4 my-3">
 						<i class="fas fa-retweet mr-3"></i><a href="#">Sensor Data  </a>
-						<table>
+						<table bordercolor="#00FDDF" border="5" cellpadding="15">
 						<tr>
 						<th>Body Temperature</th>
 						<th>Heart Beat</th>
@@ -343,6 +372,37 @@ else
 						</c:forEach>	
 						</table>
 						
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-8 single-right-left ">
+					<div class="grid images_3_of_2">
+						<div class="single-infoelectronics">
+							<ul>
+							<li>
+							<h1>	<a href="Graph"> View Graph</a>
+								 </h1>
+								</li>
+								
+								<li>
+								<h3>Prediction</h3>
+								</li>
+								<li>
+							<%
+							if(t.getTemperature()<=33)
+							{
+							%>
+							<b> Alert!</b>
+							<%} 
+							if(t.getBpm()<=90){
+							%>
+							<i>Your Heart Beat is too High</i>
+							<%} %>
+							
+								</li>
+								</ul>
+							
+							<div class="clearfix"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -392,7 +452,7 @@ else
 		<div class="footer-top-first">
 			<div class="container py-md-5 py-sm-4 py-3">
 				<!-- footer first section -->
-				<h2 class="footer-top-head-storesl font-weight-bold mb-2">Tempersture :</h2>
+				<h2 class="footer-top-head-storesl font-weight-bold mb-2">Temperature :</h2>
 				<p class="footer-main mb-4">
 					Info</p>
 				<!-- //footer first section -->
@@ -505,42 +565,20 @@ else
 		<div class="electronics-sometext py-md-5 py-sm-4 py-3">
 			<div class="container">
 				<!-- brands -->
-				<div class="sub-some">
-					<h5 class="font-weight-bold mb-2">Doctor :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Android Phones</a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Smartphones</a>
-						</li>
-						
-					</ul>
-				</div>
+				
 				<div class="sub-some mt-4">
 					<h5 class="font-weight-bold mb-2">Patient :</h5>
 					<ul>
 						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Laptops </a>
+							<a href="Viewreport" class="border-right pr-2">View Report </a>
 						</li>
 						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Printers</a>
+							<a href="Updatereport" class="border-right pr-2">Updatereport</a>
 						</li>
 						
 					</ul>
 				</div>
-				<div class="sub-some mt-4">
-					<h5 class="font-weight-bold mb-2">Hospital :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product2.html" class="border-right pr-2">TVs & DTH</a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product2.html" class="border-right pr-2">Home Theatre Systems</a>
-						</li>
-						
-					</ul>
-				</div>
+				
 
 				
 				<!-- //payment -->
@@ -552,12 +590,11 @@ else
 	<!-- copyright -->
 	<div class="copy-right py-3">
 		<div class="container">
-			<p class="text-center text-white">© 2018 Med-Cloud. All rights reserved.</p>
+			<p class="text-center text-white">© 2018 Med-Cloud</p>
 		</div>
 	</div>
 
 	<!-- js-files -->
-	<!-- jquery -->
 	<script src="${jquery}"></script>
 	<!-- //jquery -->
 
@@ -704,7 +741,9 @@ else
 	<script src="${boot}"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
-<%} %>
+<%
+		}
+		} %>
 </body>
 
 </html>

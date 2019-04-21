@@ -71,7 +71,7 @@
 		<div class="container-fluid">
 			<div class="row main-top-storesl py-2">
 				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Info
+					<p class="text-white text-lg-left text-center">${logoutmsg}
 						<i class="fas fa-shopping-cart ml-1"></i>
 					</p>
 				</div>
@@ -197,7 +197,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Home">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -206,8 +206,8 @@
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Patient Login</a>
-								<a class="dropdown-item" href="product2.html">Patient Register</a>
+								<a class="dropdown-item" href="Patientlogin">Patient Login</a>
+								<a class="dropdown-item" href="registration">Patient Register</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
@@ -215,11 +215,11 @@
 								Doctor
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Doctor Login</a>
-								<a class="dropdown-item" href="product2.html">Doctor Register</a>
+								<a class="dropdown-item" href="Doctorlogin">Doctor Login</a>
+								<a class="dropdown-item" href="Doctorregistration">Doctor Register</a>
 							</div>
 						</li>
-						</li>
+						
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="about.html">About Us</a>
 						</li>
@@ -228,8 +228,8 @@
 								Hospital
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product">Hospital Login</a>
-								<a class="dropdown-item" href="product2.html">Hospital Register</a>
+								<a class="dropdown-item" href="Hospitallogin">Hospital Login</a>
+								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
 							</div>
 						</li>
 						<li class="nav-item">

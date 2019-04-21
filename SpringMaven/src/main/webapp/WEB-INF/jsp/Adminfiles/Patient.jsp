@@ -74,26 +74,6 @@
   </li>
 
 
-  <li>
-      <a href=""><i class="material-icons blue-text">description</i>Add
-      </a>
-      <ul class="submenu2">
-        <li><a href="AddHospital">Add Hospital</a></li>
-          <li><a href="AddDoctor">Add Doctor</a></li>
-          </ul>
-  </li>
-  </ul>
-
-<div class="divider"></div>
-
-<li>
-    <a href=""><i class="material-icons blue-text">help</i>Help
-    </a>
-</li>
-<li>
-    <a href=""><i class="material-icons blue-text">exit_to_app</i>Logout
-    </a>
-</li>
 </ul>
 
 
@@ -106,7 +86,7 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Id</th>
         <th scope="col">First Name</th>
         <th scope="col">Middle Name</th>
         <th scope="col">Last Name</th>

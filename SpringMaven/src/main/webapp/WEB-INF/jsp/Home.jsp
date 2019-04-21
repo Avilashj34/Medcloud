@@ -222,11 +222,9 @@
 						</li>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="about.html">About Us</a>
+							<a class="nav-link" href="3">About Us</a>
 						</li>
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="product.html">New Arrivals</a>
-						</li>
+						
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Hospital
@@ -237,7 +235,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="3">Contact Us</a>
 						</li>
 					</ul>
 				</div>
@@ -260,11 +258,11 @@
 				<div class="container">
 					<div class="storesl-space-banner">
 						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>Get flat
-								<span>10%</span> Cashback</p>
+							<p>Get Record
+								<span>Acessibility</span> anytime</p>
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
 								<span>Big</span>
-								Sale
+								pt
 							</h3>
 							<a class="button2" href="product.html">Register/Login Here</a>
 						</div>
@@ -276,7 +274,7 @@
 					<div class="storesl-space-banner">
 						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
 							<p>advanced
-								<span>Wireless</span> earbuds</p>
+								<span>Iot</span> </p>
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
 								<span>Record</span>
 							</h3>
@@ -294,7 +292,7 @@
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">New
 								<span>Standard</span>
 							</h3>
-							<a class="button2" href="product.html">Doctors Availability </a>
+							<a class="button2" href="List_Of_Doctorsl">Doctors Availability </a>
 						</div>
 					</div>
 				</div>
@@ -307,7 +305,7 @@
 								<span>Record</span> In One Place</p>
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Today Doctor<span>Availability</span>
 							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
+							<a class="button2" href="#">Login Here </a>
 						</div>
 					</div>
 				</div>
@@ -329,9 +327,8 @@
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
 			<h3 class="tittle-storesl text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>O</span>ur
-				<span>N</span>ew
-				<span>M</span>ember</h3>
+				<span>N</span>ewly
+				<span>R</span>egistered</h3>
 			<!-- //tittle heading -->
 			<div class="row">
 				<!-- product left -->
@@ -616,19 +613,7 @@
 								<input type="submit" value=" ">
 							</form>
 						</div>
-						<!-- price -->
-						<div class="range border-bottom py-2">
-							<h3 class="electronicsits-sear-head mb-3">Price</h3>
-							<div class="storesl-range">
-								<ul>
-									
-									<li class="mt-1">
-										<a href="#">Over</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!-- //price -->
+						
 						<!-- discounts -->
 						
 						<!-- //discounts -->

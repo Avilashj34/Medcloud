@@ -1,4 +1,4 @@
-]<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 	    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
@@ -77,6 +77,11 @@
 	<div class="electronics-main-top">
 		<div class="container-fluid">
 			<div class="row main-top-storesl py-2">
+				<div class="col-lg-4 header-most-top">
+					<p class="text-white text-lg-left text-center">Med-Cloud
+						<i class="fas fa-shopping-cart ml-1"></i>
+					</p>
+				</div>
 				
 				<div class="col-lg-8 header-right mt-lg-0 mt-2">
 					<!-- header lists -->
@@ -145,47 +150,7 @@
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -199,9 +164,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
-								<span class="sr-only">(current)</span>
-							</a>
+							
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -279,7 +242,7 @@
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
 								<span>Record</span>
 							</h3>
-							<a class="button2" href="product.html">Register/Login Here</a>
+							<a class="button2" href="Doctorregistration">Register/Login Here</a>
 						</div>
 					</div>
 				</div>
@@ -328,9 +291,8 @@
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
 			<h3 class="tittle-storesl text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>O</span>ur
-				<span>N</span>ew
-				<span>M</span>ember</h3>
+				<span>D</span>octor
+				<span>L</span>ist</h3>
 			<!-- //tittle heading -->
 			<div class="row">
 				<!-- product left -->
@@ -342,11 +304,12 @@
 						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
 							<h3 class="heading-tittle text-center font-italic">Doctor Registered</h3>
 							<div class="row">
+							<!-- EntryController -->
 								<c:forEach items="${doctorlist}" var="d">
 								<div class="col-md-4 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center">
-											<td><img width="100" height="100" src="GetPic/<c:out value='${d.doctorid}'/>"></td>
+											<td><img width="100" height="100" src="GetDoctorPic/<c:out value='${d.doctorid}'/>"></td>
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
 													<a href="#" class="link-product-add-cart">Quick View</a>

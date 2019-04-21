@@ -18,7 +18,6 @@ import com.medcloud.Dao.LoginDao;
 import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Prescription;
 import com.medcloud.Model.Registration;
-import com.medcloud.test.Doctorlogin;
 
 @Controller
 public class DoctorLogincontroller {
@@ -45,7 +44,11 @@ public class DoctorLogincontroller {
 	
 	//@RequestMapping("")
 	
-	
+	@RequestMapping("/dlogout")
+	public String Doclogout(Model m)
+	{
+		return "Doctorlogin";
+	}
 	@RequestMapping(value = "/doctorlogin", method = RequestMethod.POST)
 	public String loginCon(@RequestParam("emailid") String email,@RequestParam("password") String password
 			,Model m,HttpSession session)
@@ -83,6 +86,7 @@ public class DoctorLogincontroller {
 		String patientID=bl.getdataByEmail(pemail);
 		//int patientID=Integer.parseInt(id);
 		session.setAttribute("patientID", patientID);
+		session.setAttribute("patientemailsession", pemail);
 		System.out.println(patientID);
 		//m.addAttribute("email",r.getEmailid());
 		return "Patientprescription";
@@ -109,7 +113,7 @@ public class DoctorLogincontroller {
 		System.out.println(pid);
 		System.out.println("Session INfo"+pid +" "+demail +" "+pid +" "+id3  );
 		Registration r=bl.geted(patientid);
-		Doctor d=bl.getdoctorid(id3);
+		//Doctor d=bl.getdoctorid(id3);
 		prescription.setMedicine1(m1);
 		prescription.setMedicine2(m2);
 		prescription.setAdvice(advice);

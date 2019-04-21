@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+
+    <title></title>
+
+
+  </head>
+  <body>
+
+      <div class="row">
+          <div class="s12">
+              <div class="card-panel">
+                <h5>Temprature and heart beat </h5>
+
+          <div id="myDiv"></div>
+
+                <br>
+              </div>
+            </div>
+            </div>
+             <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script>
+              var trace1 = {
+  x: ['giraffes', 'orangutans', 'monkeys'],
+  y: [20, 14, 23],
+  name: 'Temperature',
+  type: 'bar'
+};
+
+var trace2 = {
+  x: ['giraffes', 'orangutans', 'monkeys'],
+  y: [12, 18, 29],
+  name: 'Heart Beat Rate',
+  type: 'bar'
+};
+
+var data = [trace1, trace2];
+
+var layout = {barmode: 'group'};
+
+Plotly.newPlot('myDiv', data, layout);
+            </script>
+  </body>
+</html>

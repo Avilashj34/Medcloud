@@ -20,7 +20,7 @@ else{
 
 <form:form action="routineprocess" method="post">	
 	
-	 <form:hidden path="id" name="id"/><br>
+	<form:hidden path="id" name="id"/><br>
 	Weight : <form:input path="weight"/><br>
 	Blood Pressure : <form:input path="bloodpressure"/><br>
 	Height : <form:input path="height"/><br>

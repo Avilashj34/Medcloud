@@ -1,5 +1,7 @@
- <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-
+ <%@page import="com.medcloud.Dao.*"%>
+<%@page import="com.medcloud.Model.*"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.sql.*,java.io.*,com.medcloud.Controller.*" %>
 <!DOCTYPE html>
 <html>
 
@@ -30,8 +32,27 @@
  </style>
 </head>
 <body>
+<%
+Doctor d=new Doctor();
+BlManager bl=new BlManager();
 
-<%int i=0; %>
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://medicaltreatment.cyd5gs2hapgv.ap-northeast-1.rds.amazonaws.com:3306/medicaltreatment","root","medcloud");
+	Statement st=con.createStatement();
+	ResultSet rs= st.executeQuery("select * from doctor");
+	while(rs.next())
+	{
+	System.out.println(rs.getString(2));
+	d.setDoctorid(rs.getInt(1));
+	d.setFirstname(rs.getString(2));
+	d.setLastname(rs.getString(3));
+	d.setDescription(rs.getString(9));
+	d.setSpecialty(rs.getString(10));
+	
+	
+	//d=bl.SearchDoctor(email);
+	
+ %>
 <nav class="blue">
  <div class="nav wrapper">
    <div class="container">
@@ -69,35 +90,19 @@
    <a href=""><i class="material-icons blue-text">dashboard</i>View Data
    </a>
    <ul class="submenu1">
-     <li><a href="Hospital.jsp">Hospital data</a></li>
-     <li><a href="Doctor.jsp">Doctor data</a></li>
-     <li><a href="Patient.jsp">Patient data</a></li>
-     <li><a href="Prescription.jsp">Prescription data</a></li>
-     <li><a href="Routine.jsp">Routine data</a></li>
+     <li><a href="Hospital">Hospital data</a></li>
+    <li><a href="Doctor">Doctor data</a></li>
+    <li><a href="Patient">Patient data</a></li>
+    <li><a href="Prescription">Prescription data</a></li>
+    <li><a href="Routine">Routine data</a></li>
        </ul>
  </li>
 
 
- <li>
-     <a href=""><i class="material-icons blue-text">description</i>Add
-     </a>
-     <ul class="submenu2">
-       <li><a href="AddHospital.jsp">Add Hospital</a></li>
-         <li><a href="AddDoctor.jsp">Add Doctor</a></li>
-         </ul>
- </li>
+ 
  </ul>
 
-<div class="divider"></div>
 
-<li>
-   <a href=""><i class="material-icons blue-text">help</i>Help
-   </a>
-</li>
-<li>
-   <a href=""><i class="material-icons blue-text">exit_to_app</i>Logout
-   </a>
-</li>
 </ul>
 
 
@@ -119,7 +124,7 @@
      </tr>
      <c:forEach items="${list}" var="d">
      <tr>
-     <td><% ++i; %></td>
+     <td><%=d.getDoctorid() %></td>
      <td>${d.firstname}</td>
      <td>${d.lastname}</td>
      <td>${d.emailid}</td>
@@ -134,7 +139,7 @@
 
 
 
-
+<%} %>
 
 </body>
 

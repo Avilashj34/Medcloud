@@ -173,7 +173,7 @@ public class Doctorcontroller {
 	@RequestMapping(value="/{doctorid}" ,method=RequestMethod.GET)
 	public String show(Model m,@PathVariable("doctorid") Integer id,HttpSession session)
 	{
-		System.out.println(id);
+		System.out.println("DoctorController");
 		try {
 			int hid=(int) session.getAttribute("hospitalsession");
 			System.out.println(hid);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.io.*" %>
+    <%@page import="java.io.*,java.sql.*" %>
     <%@page import="java.util.*" %>
     <%@page import="com.medcloud.Controller.*" %>
     <%@page import="com.medcloud.Dao.*" %>
@@ -11,27 +11,52 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>MedCloud | Prescription</title>
+<style type="text/css">
+
+</style>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <%
 String pid=(String)session.getAttribute("patientID");
-System.out.println(pid);
-if(pid==null)
+String email=(String)session.getAttribute("patientemailsession");
+
+Registration r=new Registration();
+Class.forName("com.mysql.jdbc.Driver");
+Connection con=DriverManager.getConnection("jdbc:mysql://medicaltreatment.cyd5gs2hapgv.ap-northeast-1.rds.amazonaws.com:3306/medicaltreatment","root","medcloud");
+Statement st=con.createStatement();
+ResultSet rs= st.executeQuery("select * from patientinformation where emailid='"+email+"'");
+while(rs.next())
 {
-	response.sendRedirect("Doctorlogin");
-}
-else
-{
+	r.setFirstname(rs.getString(2));
+	
+
 %>
-First Name:${sessionScope.Data}
-${pid}
-<form action="prescriptionprocess" method="post">
-Medicine 1 :<input type="text" name="medicine1"><br>
-Med 2<input type="text" name="medicine2"><br>
-Advice <input type="text" name="advice"><br>
-<input type="submit" value="submit data">
-</form>
+First Name : <%=r.getFirstname() %>
 <%} %>
+<center>
+<form action="prescriptionprocess" method="post">
+<table>
+<tr>
+<td>
+Medicine 1 </td><td><input type="text" name="medicine1"></td>
+</tr>
+
+<tr>
+<td>
+Med 2 </td><td> <input type="text" name="medicine2"></td></tr>
+<tr>
+<td>
+Advice </td><td> <input type="text" name="advice"></td></tr>
+<tr>
+<td>&nbsp;
+</td><td>
+<input type="submit" value="submit data"></td></tr>
+</table>
+</form>
+<h3>View the Report Of Patient<a href="Viewreport">Click Here</a></h3>
+</center>
+
 </body>
 </html>

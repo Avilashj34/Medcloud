@@ -115,10 +115,20 @@ else
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title text-center"><a href="logout">Confirm Logout</a></h5>
-			
+					<h5 class="modal-title text-center">Are You Sure You Want To Logout</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				
+				<div class="modal-body">
+						
+						<div class="right-storesl">
+						<a href="logout">
+							<input type="submit" class="form-control" value="Confirm">
+						</a>
+						</div>
+						
+				</div>
 			</div>
 		</div>
 	</div>
@@ -285,7 +295,7 @@ else
 							<ul class="slides">
 								<li data-thumb="${si}">
 									<div class="thumb-image">
-										<img src="GetPic/<c:out value='${userid }'/>" width="200" height="150"/> </div>
+										<img src="GetPic/<c:out value='${userid }'/>" data-imagezoom="true" class="img-fluid" /> </div>
 								</li>
 							</ul>
 							<div class="clearfix"></div>

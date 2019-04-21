@@ -61,7 +61,7 @@ public class Empconntroller {
 	@RequestMapping(value="/register" , method=RequestMethod.POST)
 	public String insert(@ModelAttribute("register")Registration register,@RequestParam("firstname") String firstname ,
 			@RequestParam("emailid") String email,@RequestParam("photo") MultipartFile photo,
-			@RequestParam("password") String password,HttpServletRequest request,@RequestParam("phonenumber") Integer phonenumber,
+			@RequestParam("password") String password,HttpServletRequest request,@RequestParam("phonenumber") String phonenumber,
 			HttpServletResponse response,@RequestParam("gender") String gender,@RequestParam("country")String country,
 			Model m) throws IOException
 	{
