@@ -29,62 +29,10 @@
   </style>
 </head>
 <body>
-<nav class="blue">
-  <div class="nav wrapper">
-    <div class="container">
-      <a href="admin.html" class="brand-logo center">Admin</a>
-
-<a href="" class="button-collapse show-on-large" data-activates="sidenav"><i class="material-icons">menu</i></a>
-<ul class="right collection hide-on-small-and-down" style="margin:0px;
-      border: 0px solid transparent">
-        <li class="collection-item avatar" style="background-color: transparent;min-height: 60px;">
-          <a href="" class="tooltipped" data-tooltip="Notifications" data-position="top">
-            <i class="material-icons circle white blue-text">notifications_active</i></a>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<ul class="side-nav fixed" id="sidenav">
-  <li>
-    <div class="user-view">
-<div class="background">
-  <img src="img/img11.jpg" alt="" class="responsive-img">
-</div>
-<a href="">
-  <img src="img/user.png" alt="" class="circle">
-</a>
-<span class="white-text name">Admin Name</span>
-
-    </div>
-  </li>
-  <ul class="mainmenu">
-  <li>
-    <a href=""><i class="material-icons blue-text">dashboard</i>View Data
-    </a>
-    <ul class="submenu1">
-      <li><a href="Hospital">Hospital data</a></li>
-    <li><a href="Doctor">Doctor data</a></li>
-    <li><a href="Patient">Patient data</a></li>
-    <li><a href="Prescription">Prescription data</a></li>
-    <li><a href="Routine">Routine data</a></li>
-        </ul>
-  </li>
-
-
-</ul>
-
-
-
 
 <!--SideNav Finished-->
 
-<div class="content">
-  <div class="container">
-  <table class="table">
-    <thead class="thead-dark">
+<table>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">First Name</th>
@@ -92,7 +40,7 @@
         <th scope="col">Last Name</th>
         <th scope="col">Phone Number</th>
         <th scope="col">Email id</th>
-        <th scope="col">Contry</th>
+        <th scope="col">Password</th>
         <th scope="col">Address</th>
         <th scope="col">Photo</th>
         <th scope="col">age</th>
@@ -101,21 +49,17 @@
       <tr>
       <td>${p.userid}</td>
       <td>${p.firstname}</td>
+      <td>${p.middlename}</td>
       <td>${p.lastname}</td>
+      <td>${p.phonenumber}</td>
       <td>${p.emailid}</td>
-      <td>938482093</td>
-      <td>andapav@nonveg.com</td>
-      <td>Hindustan</td>
-      <td>Thane</td>
+      <td>${p.password}</td>
+      <td>${p.address}</td>
       <td><img width="100" height="100" src="GetPic/<c:out value='${p.userid}'/>"></td>
-      <td>iske badle Dob krel database mein</td>
+      <td>${p.age}</td>
       </tr>
       </c:forEach>
-    </thead>
   </table>
-</div>
-</div>
-
 
 
 

@@ -51,9 +51,9 @@ public class EmpDao {
 
 	public int hospitalinsert(Hospital h) {
 		// TODO Auto-generated method stub
-		String sql="insert into hospital(hid,hospitalname,password,address,city,phoneno,longnote,time)"
+		String sql="insert into hospital(hospitalname,password,address,city,phoneno,longnote,time,hospitalid)"
 				+ "values(?,?,?,?,?,?,?,?)";
-		return jdbctemplate.update(sql ,new Object[] {h.getHospitalName(),h.getPassword(),h.getAddress(),h.getCity(),h.getPhone(),h.getLongnote(),h.getDate()});
+		return jdbctemplate.update(sql ,new Object[] {h.getHospitalName(),h.getPassword(),h.getAddress(),h.getCity(),h.getPhone(),h.getLongnote(),h.getDate(),h.getHospitalID()});
 		
 	}
 }

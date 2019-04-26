@@ -71,8 +71,7 @@
 		<div class="container-fluid">
 			<div class="row main-top-storesl py-2">
 				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Info
-						<i class="fas fa-shopping-cart ml-1"></i>
+					<p class="text-white text-lg-left text-center">Patient
 					</p>
 				</div>
 				<div class="col-lg-8 header-right mt-lg-0 mt-2">
@@ -82,7 +81,7 @@
 							<i class="fas fa-phone mr-2"></i> +91-8097810652
 						</li>
 						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+							<a href="logout" data-toggle="modal" data-target="#exampleModal" class="text-white">
 								<i class="fas fa-sign-in-alt mr-2"></i> Log-Out </a>
 						</li>
 						<li class="text-center text-white">

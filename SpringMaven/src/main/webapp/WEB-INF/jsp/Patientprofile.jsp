@@ -1,6 +1,8 @@
+<%@page import="com.medcloud.Model.Registration"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
     <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+    <%@page import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html >
@@ -68,13 +70,31 @@
 <body>
 <%
 String email=(String)session.getAttribute("patientemailsession");
-Registration r;
+Registration r = new Registration();
+
 if(email==null)
 {
 	response.sendRedirect("Patientlogin");
 }
 else
 {
+	try
+	{
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://medicaltreatment.cyd5gs2hapgv.ap-northeast-1.rds.amazonaws.com:3306/medicaltreatment","root","medcloud");
+	Statement st=con.createStatement();
+	ResultSet rs= st.executeQuery("select * from doctor where emailid='"+email+"'");
+	while(rs.next())
+	{
+	System.out.println(rs.getString(2));
+	r.setFirstname(rs.getString(2));
+	r.setLastname(rs.getString(4));
+	r.setGender(rs.getString(3));
+	}
+	}catch(Exception e){
+	  System.out.println("No data found");
+	}
+	
 	System.out.println(email);
 %>
 	<!-- top-header -->
@@ -137,24 +157,24 @@ else
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">FeedBAck</h5>
+					<h5 class="modal-title">FeedBack</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="post">
+					<form action="feedback" method="post">
 						<div class="form-group">
 							<label class="col-form-label">Your Name</label>
-							<input type="text" class="form-control" placeholder=" " name="Name" required="">
+							<input type="text" class="form-control" placeholder=" " name="feedbackname" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Email</label>
-							<input type="email" class="form-control" placeholder=" " name="Email" required="">
+							<input type="email" class="form-control" placeholder=" " name="feedbackemail" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Message</label>
-							<input type="text" class="form-control" placeholder=" " name="Password" id="password1" required="">
+							<input type="text" class="form-control" placeholder=" " name="feedbackmessage"  required="">
 						</div>
 						
 						<div class="right-storesl">
@@ -175,47 +195,7 @@ else
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -232,7 +212,7 @@ else
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Patientprofile">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -270,7 +250,7 @@ else
 			<div class="container">
 				<ul class="stores_short">
 					<li>
-						<a href="index.html">Home</a>
+						<a href="Patientprofile">Home</a>
 						<i>|</i>
 					</li>
 					<li>Patient Information</li>
@@ -305,14 +285,35 @@ else
 
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
 					<h3 class="mb-3">${fname} ${mname} ${lname}</h3>
+					<h4 class="mb-3">Age is : ${age}</h4>
 					<p class="mb-3">
-						<span class="item_price">Age is : ${age}</span>
+						<span class="item_price">Email-Id is : ${emailid}</span><br><br>
 						<label>Additional Information</label>
 					</p>
 					<div class="single-infoelectronics">
 						<ul>
 							<li class="mb-3">
-								The Medicine which you have to take is  : ${medicine}
+							<b>${medcineerror}</b>
+								The Medicine table 
+								<table bordercolor="#00FDDF" border="5" cellpadding="15">
+							<tr>
+							<th>
+							Medicine 1 </th>
+							<th>
+							Medicine 2 </th>
+							<th>
+							Advice</th>
+							
+							
+							<tr>
+							<td> ${medicine1}
+							</td>
+							<td> ${medicine2 }
+							</td>
+							<td> ${advice } </td>
+							
+							</tr>
+							</table>
 							</li>
 							<!--Add More -->
 						</ul>
@@ -323,14 +324,17 @@ else
 							<label>Doctor</label>Information</p>
 						<ul>
 							<li class="mb-1">
-								Your Doctor :${docname}
+								Doctor Name :${docname}
 							</li>
 							<li class="mb-1">
-								Description : ${docdescription}
+								Doctor Description : ${description}
+							</li>
+							<li class="mb-1">
+								Email-Id : ${email}
 							</li>
 						</ul>
 						<p class="my-sm-4 my-3">
-							<i class="fas fa-retweet mr-3"></i>Doctor Address 
+							<i class="fas fa-retweet mr-3"></i>Doctor Specialty : ${speciality}
 						</p>
 					</div>
 					<div class="product-single-storesl">
@@ -339,22 +343,15 @@ else
 							<label>Hospital </label>Information</p>
 						<ul>
 							<li class="mb-1">
-								Your Hospital :${docname}
+								 Hospital Name : Aashirwad Hospital
+							</li>
+							<li class="mb-1">
+								 City : Thane
 							</li>
 						</ul>
-						<p class="my-sm-4 my-3">
-							<i class="fas fa-retweet mr-3"></i>Hospital Address 
-						</p>
+						
 					</div>
-					<div class="occasion-cart">
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-							<form action="logout" method="post">
-								<fieldset>
-									<input type="submit" name="Logout" value="Log-Out" class="button" />
-								</fieldset>
-							</form>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -400,22 +397,7 @@ else
 
 	<!-- footer -->
 	<footer>
-		<div class="footer-top-first">
-			<div class="container py-md-5 py-sm-4 py-3">
-				<!-- footer first section -->
-				<h2 class="footer-top-head-storesl font-weight-bold mb-2">Information :</h2>
-				<p class="footer-main mb-4">
-					
-					more.</p>
-				<!-- //footer first section -->
-				<!-- footer second section -->
-				<div class="row storesl-grids-footer border-top border-bottom py-sm-4 py-3">
-					add info
-					
-				</div>
-				<!-- //footer second section -->
-			</div>
-		</div>
+		
 		<!-- footer third section -->
 		<div class="storesl-middlefooter-sec">
 			<div class="container py-md-5 py-sm-4 py-3">
@@ -440,22 +422,22 @@ else
 						<h3 class="text-white font-weight-bold mb-3">Quick Links</h3>
 						<ul>
 							<li class="mb-3">
-								<a href="about.html">About Us</a>
+								<a href="about">About Us</a>
 							</li>
 							<li class="mb-3">
-								<a href="contact.html">Contact Us</a>
+								<a href="contact">Contact Us</a>
 							</li>
 							<li class="mb-3">
-								<a href="help.html">Help</a>
+								<a href="help">Help</a>
 							</li>
 							<li class="mb-3">
-								<a href="faqs.html">Faqs</a>
+								<a href="faqs">Faqs</a>
 							</li>
 							<li class="mb-3">
-								<a href="terms.html">Terms of use</a>
+								<a href="terms">Terms of use</a>
 							</li>
 							<li>
-								<a href="privacy.html">Privacy Policy</a>
+								<a href="privacy">Privacy Policy</a>
 							</li>
 						</ul>
 					</div>
@@ -471,21 +453,7 @@ else
 							</li>
 						</ul>
 					</div>
-					<div class="col-md-3 col-sm-6 footer-grids storesl-electronicsits mt-md-0 mt-4">
-						<!-- newsletter -->
-						<h3 class="text-white font-weight-bold mb-3">Newsletter</h3>
-						<p class="mb-3"> ###</p>
-						<form action="#" method="post">
-							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Email" name="email" required="">
-								<input type="submit" value="Go">
-							</div>
-						</form>
-						<!-- //newsletter -->
-						<!-- social icons -->
-						
-						<!-- //social icons -->
-					</div>
+					
 				</div>
 				<!-- //quick links -->
 			</div>

@@ -103,7 +103,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
+					<h5 class="modal-title">FeedBack</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -140,41 +140,7 @@
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -182,7 +148,6 @@
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="electronicsits-navi_search">
-					<a href="#"><h5>Home</h5></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 				    aria-expanded="false" aria-label="Toggle navigation">
@@ -191,7 +156,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Home">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -252,7 +217,7 @@
 						<a href="#">Home</a>
 						<i>|</i>
 					</li>
-					<li>Doctor Login</li>
+				<li>Message Page</li>
 				</ul>
 			</div>
 		</div>
@@ -263,7 +228,7 @@
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
 			<h3 class="tittle-storesl text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>L</span>ogin
+				<span></span>
 			</h3>
 		
 			<div class="checkout-left">
@@ -276,10 +241,14 @@
 									
 									<div class="stores_electronicsits_card_number_grids">								
 										${status}
-${adddoctor}
+${addoctor}
 ${otperror}
 ${msg}
-Return to Home Page <a href="Hospitalhome">here</a>
+<b>${resendotp }</b>
+<b>${feedbackmsg}</b><br>
+<b>${numberexception}</b>
+<h5>${hospId}</h5>
+Return to Home Page <a href="Home">here</a>
 <br>
 <br>
 ${adminerror}

@@ -123,12 +123,18 @@ public class PatientLoginController extends HttpServlet {
 			{
 				session.setAttribute("patientemailsession",email);
 				m.addAttribute("msg", "Sucessfully Login");
+				try {
 				routine = patientdao.getPrescription(userid);
 				m.addAttribute("height",routine.getHeight());
 				m.addAttribute("weight", routine.getWeight());
 				m.addAttribute("sugar", routine.getSugar());
 				m.addAttribute("pulse", routine.getPulse());
 				m.addAttribute("blood",routine.getBloodpressure());
+				
+				}
+				catch(Exception e) {
+					m.addAttribute("prescriptionerror", "No Prescription Record Found");
+				}
 				List<Temperature> t=patientdao.getSensorData();
 				m.addAttribute("sensordata",t);
 				m.addAttribute("loginmsg","Sucessfully Logged-In");
@@ -143,13 +149,13 @@ public class PatientLoginController extends HttpServlet {
 		}
 		else
 		{
-			m.addAttribute("resendotp", "Your ACCOUNT iS nOt Activated");
-			return "ResendOtp";
+			m.addAttribute("resendotp", "Sorry Account iS not Activated or Email/Password is wrong");
+			return "Error";
 		}
 	}
 	
 	@RequestMapping(value="/Patientprofile" , method=RequestMethod.GET)
-	public String Showpatientprofile(Map<String, Object> map,HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public String Showpatientprofile(Model m,Map<String, Object> map,HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
 
 		String email=(String) session.getAttribute("patientemailsession");
 		
@@ -158,21 +164,36 @@ public class PatientLoginController extends HttpServlet {
 			return "Home";
 		}else
 		{
+			
 		Registration r=bl.getDataByEmail(email);
 		int searchID=r.getUserid();
 		System.out.println(searchID);
+		try {
 		pres=bl.getPrescriptionPatientData(searchID);
 		System.out.println(r.getUserid()+"   "+pres.getMedicine2());
 		int docid=pres.getDoctorid();
 		doc=bl.getDoctorDataByid(docid);
 		System.out.println("doctor Id"+docid+"DocName"+doc.getEmailid());
 		map.put("docname", doc.getFirstname());
+		map.put("lastname",doc.getLastname());
+		map.put("description",doc.getDescription());
+		map.put("speciality",doc.getSpecialty());
+		map.put("email",doc.getEmailid());
+		map.put("advice",pres.getAdvice());
+		map.put("medicine2",pres.getMedicine2());
+		map.put("medicine1", pres.getMedicine1());
+		
+		}
+		catch(Exception e) {
+			m.addAttribute("medicineerror", "No Data Found");
+		}
 		map.put("userid", r.getUserid());
 		map.put("fname",r.getFirstname());
 		map.put("mname", r.getMiddlename());
+		map.put("age",r.getAge());
 		map.put("lname", r.getLastname());
 		map.put("image",r.getImage());
-		map.put("medicine", pres.getMedicine1());
+		map.put("emailid", r.getEmailid());
 		return "Patientprofile";
 		}		
 	}

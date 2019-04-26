@@ -71,7 +71,7 @@ else
 	 r.setId(rs1.getInt(1));
 	 int id1=r.getId();
 %>
-   <img src="GetReportPic/<c:out value='<%=id1 %>'/>" data-imagezoom="true" class="img-fluid" width="150" height="200" /> 
+   <img src="GetReportPic/<c:out value='<%=id1 %>'/>" data-imagezoom="true" class="img-fluid" width="350" height="200" /> 
  
  <%} %>
 <%

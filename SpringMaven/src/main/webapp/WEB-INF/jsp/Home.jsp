@@ -106,7 +106,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
+					<h5 class="modal-title">FeedBack</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -144,47 +144,7 @@
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -198,7 +158,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Home">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -261,10 +221,10 @@
 							<p>Get Record
 								<span>Acessibility</span> anytime</p>
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
-								<span>Big</span>
-								pt
+								<span></span>
+							
 							</h3>
-							<a class="button2" href="product.html">Register/Login Here</a>
+							<a class="button2" href="registration">Register/Login Here</a>
 						</div>
 					</div>
 				</div>
@@ -278,7 +238,7 @@
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
 								<span>Record</span>
 							</h3>
-							<a class="button2" href="product.html">Register/Login Here</a>
+							<a class="button2" href="registration">Register/Login Here</a>
 						</div>
 					</div>
 				</div>
@@ -383,7 +343,7 @@
 							</div>
 						</div>
 						<!-- //first section -->
-						<!-- second section -->
+						<!-- second section 
 						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
 							<h3 class="heading-tittle text-center font-italic">Hospital Registered
 							</h3>
@@ -500,18 +460,10 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- //second section -->
 						<!-- third section -->
-						<div class="product-sec1 product-sec2 px-sm-5 px-3">
-							<div class="row">
-								<h3 class="col-md-4 effect-bg">Hospital </h3>
-								<p class="storesl-nut-middle">Info</p>
-								<div class="col-md-8 bg-right-nut">
-									<img src="${m6}" alt="">
-								</div>
-							</div>
-						</div>
+						
 						<!-- //third section -->
 						<!-- fourth section -->
 						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
@@ -536,22 +488,7 @@
 												<span class="item_price">21</span>
 												
 											</div>
-											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart" />
-														<input type="hidden" name="add" value="1" />
-														<input type="hidden" name="business" value=" " />
-														<input type="hidden" name="item_name" value="Whirlpool 245" />
-														<input type="hidden" name="amount" value="230.00" />
-														<input type="hidden" name="discount_amount" value="1.00" />
-														<input type="hidden" name="currency_code" value="USD" />
-														<input type="hidden" name="return" value=" " />
-														<input type="hidden" name="cancel_return" value=" " />
-														<input type="submit" name="submit" value="Add" class="button btn" />
-													</fieldset>
-												</form>
-											</div>
+											
 
 										</div>
 									</div>
@@ -577,22 +514,7 @@
 												<span class="item_price">21</span>
 												
 											</div>
-											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart" />
-														<input type="hidden" name="add" value="1" />
-														<input type="hidden" name="business" value=" " />
-														<input type="hidden" name="item_name" value="Microwave Oven" />
-														<input type="hidden" name="amount" value="199.00" />
-														<input type="hidden" name="discount_amount" value="1.00" />
-														<input type="hidden" name="currency_code" value="USD" />
-														<input type="hidden" name="return" value=" " />
-														<input type="hidden" name="cancel_return" value=" " />
-														<input type="submit" name="submit" value="Add to cart" class="button btn" />
-													</fieldset>
-												</form>
-											</div>
+											
 										</div>
 									</div>
 								</div>

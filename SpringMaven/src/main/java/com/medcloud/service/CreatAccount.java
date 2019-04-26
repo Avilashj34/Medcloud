@@ -1,3 +1,4 @@
+
 package com.medcloud.service;
 
 public class CreatAccount {
@@ -10,8 +11,7 @@ public class CreatAccount {
 	
 	
 	public static int generateAccNo(){
-		//int hospId=(int)(Math.random()*900000);
-		int hospId=0;
+		int hospId=(int)(Math.random()*900000);
 		return hospId;
 	}
 

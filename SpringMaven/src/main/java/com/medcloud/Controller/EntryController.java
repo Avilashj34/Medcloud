@@ -21,7 +21,6 @@ import com.medcloud.Dao.PatientLoginDao;
 import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Hospital;
 import com.medcloud.Model.Registration;
-import com.medcloud.Model.Report;
 
 @Controller
 public class EntryController {
@@ -35,6 +34,15 @@ public class EntryController {
 	@RequestMapping("/pr")
 	public String Showtemp(Model m){
 		return "pr";
+	}
+	
+	@RequestMapping("/feedback")
+	public String Feedback(Model m,@RequestParam("feedbackname") String name,@RequestParam("feedbackemail")String email,
+			@RequestParam("feedbackmessage")String msg) {
+		bl.savefeedback(name,email,msg);
+		m.addAttribute("feedbackmsg","Thanks For Your FeedBack");
+		return "Error";
+		
 	}
 	
 	@RequestMapping("/Graph")
@@ -65,6 +73,7 @@ public class EntryController {
 	}
 	
 	
+	
 	@RequestMapping("/Home")
 	public String Showhome(Model m){
 		List<Doctor> listd = patientdao.ShowTop3ResultOfDoctor();
@@ -91,38 +100,18 @@ public class EntryController {
 	
 	
 	
-	@RequestMapping("/AddDoctor")
-	public String ShowAdminPag8(Model m){
-		return "AddDoctor";
-	}
-	
-	@RequestMapping("/admin")
-	public String ShowAdminPag(Model m){
-		return "Adminfiles/admin";
-	}
-	
 	@RequestMapping("/adminlogin")
 	public String ShowAdminlogin(Model m){
 		return "Adminfiles/adminlogin";
 	}
 	
 	@RequestMapping("adminloginverify")
-	public String AdminVerify(Model m,@RequestParam("id") int id,@RequestParam("password") String password)
+	public String AdminVerify(Model m,@RequestParam("id") String id,@RequestParam("password") String password)
 	{
-		if(id==8097 && password=="avilashjha")
-		{
-		return "admin";
-		}
-		else {
-		m.addAttribute("adminerror", "Not An authorised Admin");	
-		return "Error";
-		}
+		System.out.println("ID PASS"+password);
+		return "redirect:/Patient";
 	}
 	
-	@RequestMapping("/AddHospital")
-	public String ShowAdminPag1(Model m){
-		return "Adminfiles/AddHospital";
-	}
 	
 	@RequestMapping("/Doctor")
 	public String ShowAdminPag2(Model m){

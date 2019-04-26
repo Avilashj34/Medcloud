@@ -157,7 +157,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Doctorregistration">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -166,8 +166,8 @@
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Patient Login</a>
-								<a class="dropdown-item" href="product2.html">Patient Register</a>
+								<a class="dropdown-item" href="Patientlogin">Patient Login</a>
+								<a class="dropdown-item" href="registration">Patient Register</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
@@ -175,8 +175,8 @@
 								Doctor
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Doctor Login</a>
-								<a class="dropdown-item" href="product2.html">Doctor Register</a>
+								<a class="dropdown-item" href="Doctorlogin">Doctor Login</a>
+								<a class="dropdown-item" href="Doctorregistration">Doctor Register</a>
 							</div>
 						</li>
 						</li>
@@ -188,12 +188,12 @@
 								Hospital
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product">Hospital Login</a>
-								<a class="dropdown-item" href="product2.html">Hospital Register</a>
+								<a class="dropdown-item" href="Hospitallogin">Hospital Login</a>
+								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="#">Contact Us</a>
 						</li>
 						
 					</ul>
@@ -277,8 +277,11 @@
 									<div class="controls form-group">
 										<select class="option-storesls" name="specialty">
 											<option id="country">Speciality</option>
-											<option value="india">Dentist</option>
-											<option value="u">Other</option>
+											<option value="Cardiologist">Cardiologist</option>
+											<option value="Neurologist">Neurologist</option>
+											<option value="Psychaistrists">Psychaistrists</option>
+											<option value="physucian">Physician</option>
+											<option value="Dermatologists">Dermatologists</option>
 										</select>
 									</div>
 									<div class="controls form-group">
@@ -427,17 +430,17 @@
 	<!-- password-script -->
 	<script>
 		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
+			document.getElementById("password").onchange = validatePassword;
+			document.getElementById("confirmpassword").onchange = validatePassword;
 		}
 
 		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
+			var pass2 = document.getElementById("password").value;
+			var pass1 = document.getElementById("confirmpassword").value;
 			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+				document.getElementById("confirmpassword").setCustomValidity("Passwords Don't Match");
 			else
-				document.getElementById("password2").setCustomValidity('');
+				document.getElementById("confirmpassword").setCustomValidity('');
 			//empty string means no validation error
 		}
 	</script>

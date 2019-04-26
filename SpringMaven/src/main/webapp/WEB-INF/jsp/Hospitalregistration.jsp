@@ -123,7 +123,7 @@
 							<input type="text" class="form-control" placeholder=" " name="Password" id="password1" required="">
 						</div>
 						<div class="right-storesl">
-							<input type="submit" class="form-control" value="Register">
+							<input type="submit" class="form-control" value="Submit">
 						</div>
 						<div class="sub-storesl">
 							<div class="custom-control custom-checkbox mr-sm-2">
@@ -140,47 +140,7 @@
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -188,7 +148,6 @@
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="electronicsits-navi_search">
-					<a href="#"><h5>Home</h5></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 				    aria-expanded="false" aria-label="Toggle navigation">
@@ -197,7 +156,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Home">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -254,7 +213,7 @@
 			<div class="container">
 				<ul class="stores_short">
 					<li>
-						<a href="index.html">Home</a>
+						<a href="3">Home</a>
 						<i>|</i>
 					</li>
 					<li>Hospital Registration</li>

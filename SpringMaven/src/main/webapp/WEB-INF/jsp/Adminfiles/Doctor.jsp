@@ -48,7 +48,7 @@ BlManager bl=new BlManager();
 	d.setLastname(rs.getString(3));
 	d.setDescription(rs.getString(9));
 	d.setSpecialty(rs.getString(10));
-	
+	}
 	
 	//d=bl.SearchDoctor(email);
 	
@@ -56,7 +56,7 @@ BlManager bl=new BlManager();
 <nav class="blue">
  <div class="nav wrapper">
    <div class="container">
-      <a href="admin.jsp" class="brand-logo center">Admin</a>
+      <a href="admin" class="brand-logo center">Admin</a>
 
 
 <a href="" class="button-collapse show-on-large" data-activates="sidenav"><i class="material-icons">menu</i></a>
@@ -119,17 +119,21 @@ BlManager bl=new BlManager();
        <th scope="col">First Name</th>
        <th scope="col">Last Name</th>
        <th scope="col">Email id</th>
+              <th scope="col">password</th>
+       
        <th scope="col">Description</th>
-       <th scope="col">Image</th>
+              <th scope="col">Specialty</th>
+       
      </tr>
      <c:forEach items="${list}" var="d">
      <tr>
-     <td><%=d.getDoctorid() %></td>
+     <td>${d. doctorid}</td>
      <td>${d.firstname}</td>
      <td>${d.lastname}</td>
      <td>${d.emailid}</td>
+     <td>${d.password }</td>
      <td>${d.description}</td>
-     <td>paglo ka doctor</td>
+     <td>${d.specialty }</td>
      </tr>
      </c:forEach>
    </thead>
@@ -139,7 +143,7 @@ BlManager bl=new BlManager();
 
 
 
-<%} %>
+
 
 </body>
 

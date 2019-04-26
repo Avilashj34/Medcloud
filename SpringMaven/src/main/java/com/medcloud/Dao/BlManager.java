@@ -253,5 +253,23 @@ public class BlManager {
 	}
 
 
+
+
+	public void savefeedback(String name, String email, String msg) {
+		// TODO Auto-generated method stub
+		String sql="insert into feedback(name,email,message) values('"+name+"','"+email+"','"+msg+"')";
+		jdbctemplate.update(sql);
+	}
+
+
+
+
+	public void updatepatientid(Integer id,Integer hid) {
+		// TODO Auto-generated method stub
+		String sql="UPDATE patientinformation SET hid='"+hid+"' WHERE userid='"+id+"'";
+		jdbctemplate.update(sql);
+	}
+
+
 	
 }

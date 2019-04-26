@@ -89,9 +89,12 @@ public class PatientLoginDao {
 				u.setUserid(rs.getInt(1));
 				u.setFirstname(rs.getString(2));
 				u.setMiddlename(rs.getString(3));
+				u.setLastname(rs.getString(4));
 				u.setEmailid(rs.getString(6));
 				u.setPassword(rs.getString(11));
-				
+				u.setAddress(rs.getString(8));
+				u.setCountry(rs.getString(7));
+				u.setPhonenumber(rs.getString(5));
 				System.out.println(u.getEmailid() );
 				return u;
 			}
@@ -114,6 +117,7 @@ public class PatientLoginDao {
 				u.setAddress(rs.getString(4));
 				u.setCity(rs.getString(5));
 				u.setPassword(rs.getString(3));
+				u.setLongnote(rs.getString(7));
 				
 				return u;
 			}
@@ -132,9 +136,10 @@ public class PatientLoginDao {
 				u.setDoctorid(rs.getInt(1));
 				u.setFirstname(rs.getString(2));
 				u.setLastname(rs.getString(3));
-				u.setEmailid(rs.getString(4));
+				u.setEmailid(rs.getString(5));
 				u.setPassword(rs.getString(6));
-				
+				u.setDescription(rs.getString(9));
+				u.setSpecialty(rs.getString(10));
 				return u;
 			}		
 		});
@@ -205,7 +210,7 @@ public class PatientLoginDao {
 	}
 
 	public List<Report> getReportData(int userid) {
-		// TODO Auto-generated method stub
+		// 
 		String sql="select * from report where userid='"+userid+"'";
 		List<Report> list=new ArrayList<Report>();
 		return jdbctemplate.query(sql, new RowMapper<Report>(){

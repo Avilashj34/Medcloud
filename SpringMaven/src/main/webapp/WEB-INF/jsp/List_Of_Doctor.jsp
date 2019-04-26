@@ -171,7 +171,6 @@
 								Patient
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Patientlogin">Patient Login</a>
 								<a class="dropdown-item" href="registration">Patient Register</a>
 							</div>
 						</li>
@@ -180,26 +179,16 @@
 								Doctor
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Doctorlogin">Doctor Login</a>
 								<a class="dropdown-item" href="Doctorregistration">Doctor Register</a>
 							</div>
 						</li>
-						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="about.html">About Us</a>
+							<a class="nav-link" href="about">About Us</a>
 						</li>
 						
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Hospital
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="Hospitallogin">Hospital Login</a>
-								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
-							</div>
-						</li>
+						
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="contact">Contact Us</a>
 						</li>
 					</ul>
 				</div>
@@ -222,13 +211,13 @@
 				<div class="container">
 					<div class="storesl-space-banner">
 						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>Get Availa
-								<span>da</span> DA</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
-								<span>Big</span>
-								hjsd
+							<p>Get Discount
+								<span>20%</span>On Pre registration</p>
+							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
+								<span>Join </span>
+								Us
 							</h3>
-							<a class="button2" href="product.html">Register/Login Here</a>
+							<a class="button2" href="registration">Register/Login Here</a>
 						</div>
 					</div>
 				</div>
@@ -238,9 +227,9 @@
 					<div class="storesl-space-banner">
 						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
 							<p>advanced
-								<span>IOT</span> Med</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
-								<span>Record</span>
+								<span>IOT</span> Med-Cloud</p>
+							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Easy
+								<span>Record</span>Accessibility 
 							</h3>
 							<a class="button2" href="Doctorregistration">Register/Login Here</a>
 						</div>
@@ -309,10 +298,10 @@
 								<div class="col-md-4 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center">
-											<td><img width="100" height="100" src="GetDoctorPic/<c:out value='${d.doctorid}'/>"></td>
+											<td><img width="150" height="200" src="GetDoctorPic/<c:out value='${d.doctorid}'/>"></td>
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="#" class="link-product-add-cart">Quick View</a>
+													<a href="#" class="link-product-add-cart">${d.firstname}</a>
 												</div>
 											</div>
 											<span class="product-new-top">${d.firstname}</span>
@@ -320,17 +309,23 @@
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html">${d.emailid}</a>
+												<a href="#">${d.emailid}</a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price">21</span>
+												<span class="item_price"></span>
 												
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 												<form action="#" method="post">
 													<fieldset>
 														
-														<b><a href="<c:url value='${d.doctorid}'/>">Add </a> </b>
+														<!-- <b><a href="add/<c:out value='${d.doctorid}'/>">Add </a> </b>
+ -->
+ <%
+ 
+ %>
+ <b><a href="/add">Add </a> </b>														 
+ ${addoctor}
 													</fieldset>
 												</form>
 											</div>

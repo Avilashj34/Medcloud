@@ -12,10 +12,10 @@ public class RoutineDao {
 		this.jdbctemplate = jdbctemplate;
 	}
 	
-	public int insertroutine(RoutineMedicalRecord r)
+	public int insertroutine(RoutineMedicalRecord r,Integer id)
 	{
-		String sql="insert into routine_medical_recored(height,weight,pulse,bloodpressure,sugar) "
-				+ "values("+r.getHeight()+","+r.getWeight()+","+r.getPulse()+","+r.getBloodpressure()+","+r.getSugar()+")";
+		String sql="insert into routine_medical_recored(height,weight,pulse,bloodpressure,sugar,userid) "
+				+ "values("+r.getHeight()+","+r.getWeight()+","+r.getPulse()+","+r.getBloodpressure()+","+r.getSugar()+","+id+")";
 		return jdbctemplate.update(sql);
 		
 	}

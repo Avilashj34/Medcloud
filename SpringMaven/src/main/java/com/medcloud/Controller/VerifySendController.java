@@ -72,13 +72,23 @@ public class VerifySendController {
 	}
 	
 	@RequestMapping(value="/SendPatientToDoctor", method=RequestMethod.POST)
-	public String SendPatient(Model m,@RequestParam("sendpatientemail")String email)
+	public String SendPatient(Model m,@RequestParam("sendpatientemail")String email,HttpSession session)
 	{
 		
 		//PrintWriter out=r 
-		
-		m.addAttribute("msg", "Patient Registered");
+		try {
+		Integer hid=(Integer) session.getAttribute("hospitalidsession");
+		String userid=bl.getdataByEmail(email);
+		Integer id= Integer.parseInt(userid);
+		bl.updatepatientid(id,hid);
+		m.addAttribute("sendmsg", "Thank You! "+email+" Patient Added");
 		return "Hospitalhome";
+		}
+		catch (Exception e){
+			m.addAttribute("sendpatienterror","Error Adding Patient data");
+			return "Hospitalhome";
+		
+		}
 		
 	}
 }

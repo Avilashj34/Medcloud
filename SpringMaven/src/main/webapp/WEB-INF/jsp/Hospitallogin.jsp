@@ -71,7 +71,7 @@
 		<div class="container-fluid">
 			<div class="row main-top-storesl py-2">
 				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Info
+					<p class="text-white text-lg-left text-center">
 						<i class="fas fa-shopping-cart ml-1"></i>
 					</p>
 				</div>
@@ -109,18 +109,18 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="post">
+					<form action="feedback" method="post">
 						<div class="form-group">
 							<label class="col-form-label">Your Name</label>
-							<input type="text" class="form-control" placeholder=" " name="Name" required="">
+							<input type="text" class="form-control" placeholder=" " name="feedbackname" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Email</label>
-							<input type="email" class="form-control" placeholder=" " name="Email" required="">
+							<input type="email" class="form-control" placeholder=" " name="feedbackemail" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Message</label>
-							<input type="text" class="form-control" placeholder=" " name="Password" id="password1" required="">
+							<input type="text" class="form-control" placeholder=" " name="feedbackmessage" id="password1" required="">
 						</div>
 						<div class="right-storesl">
 							<input type="submit" class="form-control" value="Register">
@@ -140,47 +140,7 @@
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -197,7 +157,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Hospitallogin">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -221,7 +181,7 @@
 						</li>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="about.html">About Us</a>
+							<a class="nav-link" href="about">About Us</a>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -233,7 +193,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="contact">Contact Us</a>
 						</li>
 						
 					</ul>
@@ -255,7 +215,7 @@
 			<div class="container">
 				<ul class="stores_short">
 					<li>
-						<a href="#">Home</a>
+						<a href="Hospitallogin">Home</a>
 						<i>|</i>
 					</li>
 					<li>Hospital Login</li>
@@ -271,19 +231,20 @@
 			<h3 class="tittle-storesl text-center mb-lg-5 mb-sm-4 mb-3">
 				<span>L</span>ogin
 			</h3>
-		
+		<!-- Doctor Controller -->
 			<div class="checkout-left">
 				<div class="address_form_electronics mt-sm-5 mt-4">
 					<h4 class="mb-sm-4 mb-3">Enter Your Credential</h4>
 					<h4>${warning }</h4>
-					<h5>${msg}</h5>
+					<h5>${msg}</h5><br><br>
+					<h5>${hospId}</h5>
 					<form action="hospitallogin" method="post" class="creditly-card-form electronicsinfo_form" >
 						<div class="creditly-wrapper electronics-stroe, stores_electronicsits_wrapper">
 							<div class="information-wrapper">
 								<div class="first-row">
 									<div class="controls form-group">
 									Enter Your HospitalID
-										<input class="billing-address-name form-control" type="text" name="hospId" placeholder="Enter Email id" required="">
+										<input class="billing-address-name form-control" type="text" name="hospId" placeholder="Enter HospitalId" required="">
 									</div>
 									<div class="stores_electronicsits_card_number_grids">								
 										

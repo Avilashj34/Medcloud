@@ -22,6 +22,7 @@ import com.medcloud.Dao.LoginDao;
 import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Hospital;
 import com.medcloud.Model.Registration;
+import com.medcloud.service.AES;
 import com.medcloud.service.CreatAccount;
 import com.medcloud.service.EmailService;
 
@@ -34,6 +35,9 @@ public class Doctorcontroller {
 	
 	@Autowired
 	LoginDao dao2;
+	
+	private static String secretKey = "boooooooooom";
+
 	
 	Registration r=new Registration();
 	Hospital h=new Hospital();
@@ -73,10 +77,34 @@ public class Doctorcontroller {
 	}
 	
 	
+	@RequestMapping("/Docotp")
+	public String DocOtpVerify(Model m)
+	{
+		return "Docotp";		
+	}
+	
+	
+	@RequestMapping("verifyotp")
+	public String check(Model m,@RequestParam("otp") String otp,HttpSession session)
+	{
+		int sessionotp=(int)session.getAttribute("docotp");
+		int enterotp=Integer.parseInt(otp);
+		if(sessionotp == enterotp)
+		{
+			m.addAttribute("otpmsg","Login here");
+			dao2.updateStatus(sessionotp);
+		return "Doctorlogin";
+		}
+		else
+			m.addAttribute("adddoctor","Otp Wrong Entered");
+			return "Error";
+		
+	}
+	
 	@RequestMapping(value="/doctorprocess",method=RequestMethod.POST)
 	public String Doctorsave(@ModelAttribute("doctor")Doctor doctor,@RequestParam("photo") MultipartFile photo
 			,@RequestParam("emailid") String email,@RequestParam("phonenumber")String number,@RequestParam("gender")String gender,
-			HttpSession session) throws IOException
+			@RequestParam("password")String password,HttpSession session) throws IOException
 	{
 		//three session hopitalidsession,patientemailsessiondoctoremailsession
 		/*try
@@ -91,9 +119,12 @@ public class Doctorcontroller {
 		doctor.setImage(b);
 		//System.out.println(id);
 		int otp=CreatAccount.OtpGen();
+		session.setAttribute("docotp", otp);
 		doctor.setOtp(otp);
 		doctor.setGender(gender);
 		doctor.setPhonenumber(number);
+		String encryptpass = AES.encrypt(password, secretKey);
+		doctor.setPassword(encryptpass);
 		doctor.setOtptime(Calendar.getInstance().getTime());
 		//h=bl.getDataById(id);
 		System.out.println("Object Hospital Session "+h +" "+h.getHospitalId() );
@@ -101,19 +132,22 @@ public class Doctorcontroller {
 		String messageText="The Otp For Account Password is "+otp;
 		EmailService.sendMail(email, subject, messageText);
 		dao.doctorinsert(doctor);
-		return "redirect:/Doctorlogin";
+		return "redirect:/Docotp";
 	}
 	
 	@RequestMapping(value="/hospitalprocess",method=RequestMethod.POST)
 	public String Hospitalsave(@ModelAttribute("hospital") Hospital hospital,@RequestParam("hospname") String hospname,
 			@RequestParam("hospaddress") String hospaddress,@RequestParam("password") String password,
 			@RequestParam("city") String city,@RequestParam("longnote") String longnote
-			,@RequestParam("mobile") int mobile,Model m,HttpSession session)
+			,@RequestParam("mobile") String mobile,Model m,HttpSession session)
 	{
-		
-		
+		int hospitalID=CreatAccount.generateAccNo();
+		System.out.println(hospitalID);
+		m.addAttribute("hospId","Your hospital ID for login is "+hospitalID);
+		hospital.setHospitalID(hospitalID);
 		hospital.setHospitalName(hospname);
-		hospital.setPassword(password);
+		String encryptpass= AES.encrypt(password, secretKey);
+		hospital.setPassword(encryptpass);
 		hospital.setAddress(hospaddress);
 		hospital.setCity(city);
 		hospital.setPhone(mobile);
@@ -122,28 +156,36 @@ public class Doctorcontroller {
 		dao.hospitalinsert(hospital);
 		m.addAttribute("msg","Registration sucesssfull Now Login here");
 		return "Hospitallogin";
-		
 	}
 	
 	@RequestMapping(value = "/hospitallogin", method = RequestMethod.POST)
 	public String loginCon(@RequestParam("hospId") String hospId,@RequestParam("password") String password
 			,Model m,HttpSession session)
 	{
+		// PatientDao
 		//UserMaster u = new UserMaster();
-		
+		try
+		{
 		int id=Integer.parseInt(hospId);
+		
 		System.out.println(id);
 		int idCheck = 0;
-		String passwordcheck="";
-		List<Hospital> list = dao2.loginhospital(hospId,password);
+		String encryptpass="";
+		List<Hospital> list1=dao2.ToDecryptpassword(hospId);
+		for(Hospital u:list1) 
+		{
+			encryptpass=u.getPassword();
+		}
+		String decryptpassword=AES.decrypt(encryptpass, secretKey);
+		List<Hospital> list = dao2.loginhospital(hospId,encryptpass);
+		
 		for(Hospital u : list)
 		{
-			idCheck = u.getHospitalId();
-			passwordcheck=u.getPassword();
+			idCheck = u.getHospitalID();
 			
 		}
-		System.out.println(idCheck+" "+password);
-		if((idCheck==id) && passwordcheck.equals(password))
+		System.out.println(  "In Doct "+idCheck+" "+decryptpassword+"E"+encryptpass);
+		if((idCheck==id) && decryptpassword.equals(password))
 		{
 			session.setAttribute("hospitalsession",id);
 			System.out.println(session.getId());
@@ -158,6 +200,11 @@ public class Doctorcontroller {
 	        return "Error";  
 		}
 	}
+		catch(NumberFormatException e) {
+			m.addAttribute("numberexception","Please entered hospitalID");
+			return "Error";
+		}
+	}
 	
 	
 	@RequestMapping(value="/List_Of_Doctor")
@@ -168,23 +215,29 @@ public class Doctorcontroller {
 		return "List_Of_Doctor";
 	}
 	
+	/*
+	 * ,@PathVariable("doctorid") Integer id
+	 * */
 	
-	
-	@RequestMapping(value="/{doctorid}" ,method=RequestMethod.GET)
-	public String show(Model m,@PathVariable("doctorid") Integer id,HttpSession session)
+	@RequestMapping(value="/add" ,method=RequestMethod.GET)
+	public String show(Model m,HttpSession session)
 	{
 		System.out.println("DoctorController");
 		try {
 			int hid=(int) session.getAttribute("hospitalsession");
-			System.out.println(hid);
-			bl.insertdoctorid(hid,id);
+			//System.out.println(id +" "+id);
+			//bl.insertdoctorid(hid,id);
+			m.addAttribute("addoctor","Doctor Added to your hospital Sucessfully");
+			return"List_Of_Doctor";
 		}
 		catch (Exception e) {
 			// TODO: handle exception
+			m.addAttribute("exception","Error Occured while adding doctor");
+			return "Error";
 			
 		}
-		m.addAttribute("adddoctor","Doctor Added to your hospital Sucessfully");
-		return "Error"; 
+		
+	
 		
 	}
 }

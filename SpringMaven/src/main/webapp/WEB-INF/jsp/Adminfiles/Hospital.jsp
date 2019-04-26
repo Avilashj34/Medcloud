@@ -13,7 +13,7 @@
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-  <title>Admin Pannel</title>
+  <title>Admin Panel</title>
     <style>
 
     header, main, footer,.content {
@@ -89,21 +89,26 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
+      	<th scope="col">Id</th>
         <th scope="col">Hospital Name</th>
+        <th scope="col">Password</th>
         <th scope="col">Address</th>
         <th scope="col">City</th>
         <th scope="col">Phone Number</th>
         <th scope="col">long note</th>
       </tr>
-      <tr>
+      
       <c:forEach items="${list}" var="h">
+      <tr>
       	<td>${h.hospitalId }</td>
       	<td>${h.hospitalName}</td>
       	<td>${h.password}</td>
-      
-      </c:forEach>
+      	<td>${h.address}</td>
+      	<td>${h.city}</td>
+      	<td>${h.phone}</td>
+      	<td>${h.longnote}</td>
       </tr>
-    </thead>
+      </c:forEach>
   </table>
 </div>
 </div>

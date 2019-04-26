@@ -14,13 +14,13 @@ public class Hospital implements Serializable {
 	private String address;
 	private String city;
 	private String longnote;
-	private Integer phone;
+	private String phone;
 	private Doctor doctor;
 	private Registration register;
 	private Date date;
 	private Integer doctorid;
 	private Integer userid;
-	
+	private Integer hospitalID;
 	
 	public String getAddress() {
 		return address;
@@ -34,10 +34,10 @@ public class Hospital implements Serializable {
 	public void setLongnote(String longnote) {
 		this.longnote = longnote;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public Doctor getDoctor() {
@@ -94,6 +94,12 @@ public class Hospital implements Serializable {
 	}
 	public void setUserid(Integer userid) {
 		this.userid = userid;
+	}
+	public Integer getHospitalID() {
+		return hospitalID;
+	}
+	public void setHospitalID(Integer hospitalID) {
+		this.hospitalID = hospitalID;
 	}
 	
 	

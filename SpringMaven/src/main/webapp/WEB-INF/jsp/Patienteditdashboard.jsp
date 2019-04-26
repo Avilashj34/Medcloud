@@ -114,7 +114,7 @@ else
 	ResultSet rs2=st.executeQuery("select * from routine_medical_recored where userid='"+r.getUserid()+"'");
 	while(rs2.next())
 	{
-		rou.setId(rs.getInt(1));
+		rou.setId(rs2.getInt(1));
 		rou.setWeight(rs2.getInt(3));
 		rou.setHeight(rs2.getInt(2));
 		rou.setBloodpressure(rs2.getInt(5));
@@ -192,18 +192,18 @@ else
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="post">
+					<form action="feedback" method="post">
 						<div class="form-group">
 							<label class="col-form-label">Your Name</label>
-							<input type="text" class="form-control" placeholder=" " name="Name" required="">
+							<input type="text" class="form-control" placeholder=" " name="feedbackname" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Email</label>
-							<input type="email" class="form-control" placeholder=" " name="Email" required="">
+							<input type="email" class="form-control" placeholder=" " name="feedbackemail" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Message</label>
-							<input type="password" class="form-control" placeholder="Enter  " name="Confirm Password" id="password2" required="">
+							<input type="password" class="form-control" placeholder="Enter  " name="feedbackpassword" id="password2" required="">
 						</div>
 						<div class="right-storesl">
 							<input type="submit" class="form-control" value="Register">
@@ -223,47 +223,7 @@ else
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -279,11 +239,7 @@ else
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
-								<span class="sr-only">(current)</span>
-							</a>
-						</li>
+						
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Patient
@@ -301,14 +257,14 @@ else
 							</div>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="">Update Patient Record</a>
+							<a class="nav-link" href="Patienteditdashboard">Update Patient Record</a>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="about">About Us</a>
 						</li>
 						
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="contact">Contact Us</a>
 						</li>
 						
 					</ul>
@@ -353,11 +309,11 @@ else
 						<div class="single-infoelectronics">
 							<ul >
 								<li>
-								<%=d.getHospitalName() %>
+								<b><%=d.getHospitalName() %></b>
 								</li>
 								<li class="mb-3">
-								Patient Name :<%=r.getFirstname() +"  "+ r.getLastname()%>
-								Age is : <%=r.getAge() %>
+								<b>Patient Name </b> : <%=r.getFirstname() +"  "+ r.getLastname()%> <br>
+								<b>Age is </b> : <%=r.getAge() %>
 							</li>
 							</ul>
 							<div class="clearfix"></div>
@@ -365,22 +321,8 @@ else
 					</div>
 				</div>
 
-				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
-					<h3 class="mb-3">Update Record</h3>
-					<p class="mb-3">
-						<span class="item_price">Age is : 21</span>
-						<label>Additional Information</label>
-					</p>
-					<div class="single-infoelectronics">
-						<ul>
-							<li class="mb-3">
-								Speciality In :
-							</li>
-							<!--Add More -->
-						</ul>
-					</div>
+				
 					<div class="product-single-storesl">
-						
 						<p class="my-sm-4 my-3">
 							<i class="fas fa-retweet mr-3"></i>Update Data
 							<form action="updateprescription" method="post">
@@ -389,7 +331,7 @@ else
 								Blood Pressure : <input type="text" name="bloodpressure" value="<%=rou.getBloodpressure()%>"/><br>
 								Height : <input type="text" name="height" value="<%= rou.getHeight()%>"/><br>
 								Pulse : <input type="text" name="pulse" value="<%=rou.getPulse()%>"/><br>
-								Sugar : <input type="text" name="sugar" value="<%=rou.getSugar()%>"/><br>
+								Sugar : <input type="text" name="sugar" value="<%=rou.getSugar()%>"/><br><br>
 								<input type="submit" value="Update Data">
 							</form>
 						</p>
@@ -441,209 +383,7 @@ else
 	<!-- middle section -->
 
 	<!-- footer -->
-	<footer>
-		<div class="footer-top-first">
-			<div class="container py-md-5 py-sm-4 py-3">
-				<!-- footer first section -->
-				<h2 class="footer-top-head-storesl font-weight-bold mb-2">Electronics :</h2>
-				<p class="footer-main mb-4">
-					more</p>
-				<!-- //footer first section -->
-				<!-- footer second section -->
-				<div class="row storesl-grids-footer border-top border-bottom py-sm-4 py-3">
-					<div class="col-md-4 offer-footer">
-						<div class="row">
-							<div class="col-4 icon-fot">
-								<i class="fas fa-dolly"></i>
-							</div>
-							<div class="col-8 text-form-footer">
-								<h3>Free Shipping</h3>
-								<p>on orders over $100</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 offer-footer my-md-0 my-4">
-						<div class="row">
-							<div class="col-4 icon-fot">
-								<i class="fas fa-shipping-fast"></i>
-							</div>
-							<div class="col-8 text-form-footer">
-								<h3>Fast Delivery</h3>
-								<p>World Wide</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 offer-footer">
-						<div class="row">
-							<div class="col-4 icon-fot">
-								<i class="far fa-thumbs-up"></i>
-							</div>
-							<div class="col-8 text-form-footer">
-								<h3>Big Choice</h3>
-								<p>of Products</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- //footer second section -->
-			</div>
-		</div>
-		<!-- footer third section -->
-		<div class="storesl-middlefooter-sec">
-			<div class="container py-md-5 py-sm-4 py-3">
-				<div class="row footer-info stores-electronicsits-info">
-					<!-- footer categories -->
-					<div class="col-md-3 col-sm-6 footer-grids">
-						<h3 class="text-white font-weight-bold mb-3">Categories</h3>
-						<ul>
-							<li class="mb-3">
-								<a href="product.html">Mobiles </a>
-							</li>
-							<li class="mb-3">
-								<a href="product.html">Computers</a>
-							</li>
-							
-							<li class="mb-3">
-								<a href="product.html">Washing Machines</a>
-							</li>
-							<li>
-								<a href="product2.html">Refrigerators</a>
-							</li>
-						</ul>
-					</div>
-					<!-- //footer categories -->
-					<!-- quick links -->
-					<div class="col-md-3 col-sm-6 footer-grids mt-sm-0 mt-4">
-						<h3 class="text-white font-weight-bold mb-3">Quick Links</h3>
-						<ul>
-							<li class="mb-3">
-								<a href="about.html">About Us</a>
-							</li>
-							<li class="mb-3">
-								<a href="contact.html">Contact Us</a>
-							</li>
-							<li class="mb-3">
-								<a href="help.html">Help</a>
-							</li>
-							<li class="mb-3">
-								<a href="faqs.html">Faqs</a>
-							</li>
-							<li class="mb-3">
-								<a href="terms.html">Terms of use</a>
-							</li>
-							<li>
-								<a href="privacy.html">Privacy Policy</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-3 col-sm-6 footer-grids mt-md-0 mt-4">
-						<h3 class="text-white font-weight-bold mb-3">Get in Touch</h3>
-						<ul>
-							<li class="mb-3">
-								<i class="fas fa-map-marker"></i> 123 Sebastian, USA.</li>
-							<li class="mb-3">
-								<i class="fas fa-mobile"></i> 333 222 3333 </li>
-							<li class="mb-3">
-								<i class="fas fa-phone"></i> +222 11 4444 </li>
-							<li class="mb-3">
-								<i class="fas fa-envelope-open"></i>
-								<a href="mailto:example@mail.com"> mail 1@example.com</a>
-							</li>
-							<li>
-								<i class="fas fa-envelope-open"></i>
-								<a href="mailto:example@mail.com"> mail 2@example.com</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-3 col-sm-6 footer-grids storesl-electronicsits mt-md-0 mt-4">
-						<!-- newsletter -->
-						<h3 class="text-white font-weight-bold mb-3">Newsletter</h3>
-						<p class="mb-3">Free Delivery on your first order!</p>
-						<form action="#" method="post">
-							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Email" name="email" required="">
-								<input type="submit" value="Go">
-							</div>
-						</form>
-						<!-- //newsletter -->
-						<!-- social icons -->
-						<div class="footer-grids  storesl-socialmk mt-3">
-							<h3 class="text-white font-weight-bold mb-3">Follow Us on</h3>
-							<div class="social">
-								<ul>
-									<li>
-										<a class="icon fb" href="#">
-											<i class="fab fa-facebook-f"></i>
-										</a>
-									</li>
-									<li>
-										<a class="icon tw" href="#">
-											<i class="fab fa-twitter"></i>
-										</a>
-									</li>
-									<li>
-										<a class="icon gp" href="#">
-											<i class="fab fa-google-plus-g"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!-- //social icons -->
-					</div>
-				</div>
-				<!-- //quick links -->
-			</div>
-		</div>
-		<!-- //footer third section -->
-
-		<!-- footer fourth section -->
-		<div class="electronics-sometext py-md-5 py-sm-4 py-3">
-			<div class="container">
-				<!-- brands -->
-				<div class="sub-some">
-					<h5 class="font-weight-bold mb-2">Doctor :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Android Phones</a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Smartphones</a>
-						</li>
-						
-					</ul>
-				</div>
-				<div class="sub-some mt-4">
-					<h5 class="font-weight-bold mb-2">Patient :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Laptops </a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Printers</a>
-						</li>
-						
-					</ul>
-				</div>
-				<div class="sub-some mt-4">
-					<h5 class="font-weight-bold mb-2">Hospital :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product2.html" class="border-right pr-2">TVs & DTH</a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product2.html" class="border-right pr-2">Home Theatre Systems</a>
-						</li>
-						
-					</ul>
-				</div>
-
-				
-				<!-- //payment -->
-			</div>
-		</div>
-		<!-- //footer fourth section (text) -->
-	</footer>
+	
 	<!-- //footer -->
 	<!-- copyright -->
 	<div class="copy-right py-3">

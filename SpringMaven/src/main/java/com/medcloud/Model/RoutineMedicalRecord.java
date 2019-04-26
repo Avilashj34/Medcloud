@@ -1,4 +1,7 @@
+
 package com.medcloud.Model;
+
+import java.util.Date;
 
 public class RoutineMedicalRecord {
 	
@@ -8,12 +11,14 @@ public class RoutineMedicalRecord {
 	private int pulse;
 	private int bloodpressure;
 	private int sugar;
+	private Date date;
+	private Integer userid;
 	
 	
 	public RoutineMedicalRecord() {
 		super();
 	}
-	public RoutineMedicalRecord(int id, int height, int weight, int pulse, int bloodpressure, int sugar) {
+	public RoutineMedicalRecord(int id, int height, int weight, int pulse, int bloodpressure, int sugar,Date date,Integer userid) {
 		super();
 		this.id = id;
 		this.height = height;
@@ -21,6 +26,8 @@ public class RoutineMedicalRecord {
 		this.pulse = pulse;
 		this.bloodpressure = bloodpressure;
 		this.sugar = sugar;
+		this.date=date;
+		this.userid=userid;
 	}
 	public int getId() {
 		return id;
@@ -57,6 +64,18 @@ public class RoutineMedicalRecord {
 	}
 	public void setSugar(int sugar) {
 		this.sugar = sugar;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	
 	

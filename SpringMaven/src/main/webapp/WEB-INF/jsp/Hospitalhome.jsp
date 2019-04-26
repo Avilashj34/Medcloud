@@ -96,9 +96,22 @@ else
 	d.setHospitalName(rs.getString(2));
 	d.setHospitalId(rs.getInt(1));
 	d.setAddress(rs.getString(4));
+	d.setCity(rs.getString(5));
 	d.setDoctorid(rs.getInt(9));
-	}
+	
 	ResultSet r=st.executeQuery("select * from doctor where doctorid='"+d.getDoctorid()+"'");
+	 while (r.next())
+	 {
+		 List<Doctor> list=null;
+		 System.out.println(r.getString(2));
+		 doc.setFirstname(r.getString(2));
+		 doc.setLastname(r.getString(3));
+		 doc.setEmailid(r.getString(5));
+		 doc.setGender(r.getString(7));
+		 list.add(doc);
+		 System.out.println(list);
+	 }
+	}
 	
 	}
 	catch(Exception e){
@@ -114,8 +127,7 @@ else
 		<div class="container-fluid">
 			<div class="row main-top-storesl py-2">
 				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Info
-						<i class="fas fa-shopping-cart ml-1"></i>
+					<p class="text-white text-lg-left text-center">
 					</p>
 				</div>
 				<div class="col-lg-8 header-right mt-lg-0 mt-2">
@@ -176,18 +188,18 @@ FeedBack</h5>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="post">
+					<form action="feedback" method="post">
 						<div class="form-group">
 							<label class="col-form-label">Your Name</label>
-							<input type="text" class="form-control" placeholder=" " name="Name" required="">
+							<input type="text" class="form-control" placeholder=" " name="feedbackname" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Email</label>
-							<input type="email" class="form-control" placeholder=" " name="Email" required="">
+							<input type="email" class="form-control" placeholder=" " name="feedbackemail" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Message</label>
-							<input type="password" class="form-control" placeholder="Enter  " name="Confirm Password" id="password2" required="">
+							<input type="password" class="form-control" placeholder="Enter  " name="feedbackmessage" id="password2" required="">
 						</div>
 						<div class="right-storesl">
 							<input type="submit" class="form-control" value="Submit">
@@ -207,50 +219,8 @@ FeedBack</h5>
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- shop locator (popup) -->
-	<!-- //header-bottom -->
-	<!-- navigation -->
+	
+	
 	<div class="navbar-inner">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -264,7 +234,7 @@ FeedBack</h5>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="Hospitalhome">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -334,17 +304,25 @@ FeedBack</h5>
 					<div class="grid images_3_of_2">
 						<div class="single-infoelectronics">
 							<ul >
-								<li>
+								<li><h2>
 								<%=d.getHospitalName() %>
+								</h2>
+								</li>
+								<li>
+								&nbsp;
+								</li>
+								<li>
+								&nbsp;
 								</li>
 								<li class="mb-3">
-								Speciality In :<%=d.getAddress() %>
-								<%=d.getHospitalId() %>
-							</li>
+								<b>Located in : <%=d.getCity() %> </b>
+								</li>
 							<li>
+							${sendmsg}
+							${sendpatienterror}
 							<form action="SendPatientToDoctor" method="post">
-<b>Enter the E-Mail  of Patient</b>
-<input type="text" name="sendpatientemail"> <br>
+<b>Enter the E-Mail  of Patient</b><br>
+<input type="text" name="sendpatientemail"> <br><br>
 <input type="submit" value="Send Patient">
 </form>
 							</li>
@@ -355,16 +333,14 @@ FeedBack</h5>
 				</div>
 
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
-					<h3 class="mb-3">Update Record</h3>
+					<h3 class="mb-3">Record</h3>
 					<p class="mb-3">
-						<span class="item_price">Age is : 21</span>
+						<span class="item_price">Hospital ID : <%=d.getHospitalId() %></span>
 						
 					</p>
-					<label>Additional Information</label>
 					<div class="single-infoelectronics">
 						<ul>
 							<li class="mb-3">
-								Speciality In :
 							</li>
 							<!--Add More -->
 						</ul>
@@ -372,16 +348,37 @@ FeedBack</h5>
 					<div class="product-single-storesl">
 						<p class="my-3">
 							<i class="far fa-hand-point-right mr-2"></i>
-							<label>Description</label></p>
+							<label>Doctor Available</label></p>
 						<ul>
 							<li class="mb-1">
-								Total No Of Patient Visited : 10
+							<table border="5"  bordercolor="#00FDDF" cellpadding="10">
+							<tr>
+							<th>Name </th>
+							<th>Specialty </th>
+							<th> Gender</th>
+							</tr>
+							<%
+							
+							%>
+							<tr>
+							<td>Avilash Jha</td>
+							<td>Dentist</td>
+							<td>Male</td>
+							</tr>
+							<tr>
+							<td>Akshay Mehta</td>
+							<td>Neurologist</td>
+							<td>Male</td>
+							</tr>
+							<tr>
+							<td>Chaitanya Gawade</td>
+							<td>Gynologist</td>
+							<td>Male</td>
+							</tr>
+							</table>
 							</li>
 						</ul>
-						<p class="my-sm-4 my-3">
-							<i class="fas fa-retweet mr-3"></i>Update
-							Additional Info
-						</p>
+						
 						
 						
 					</div>

@@ -18,6 +18,7 @@ import com.medcloud.Dao.LoginDao;
 import com.medcloud.Model.Doctor;
 import com.medcloud.Model.Prescription;
 import com.medcloud.Model.Registration;
+import com.medcloud.service.AES;
 
 @Controller
 public class DoctorLogincontroller {
@@ -28,6 +29,9 @@ public class DoctorLogincontroller {
 	
 	@Autowired
 	BlManager bl;
+	
+	private static String secretKey = "boooooooooom";
+
 
 	@RequestMapping("/Doctorlogin")
 	public String Showlogin(Model m)
@@ -56,15 +60,21 @@ public class DoctorLogincontroller {
 		//UserMaster u = new UserMaster();
 		String emailCheck = "";
 		String name="";
-		String passwordcheck="";
-		List<Doctor> list = dao2.getDataById(email,password);
+		String encryptpass="";
+		List<Doctor> list1=dao2.Togetencryptpassword(email);
+		for(Doctor u:list1) 
+		{
+			encryptpass=u.getPassword();
+		}
+		System.out.println(encryptpass);
+		String decryptpassword=AES.decrypt(encryptpass, secretKey);
+		List<Doctor> list = dao2.getDataById(email,encryptpass);
 		for(Doctor u : list)
 		{
 			emailCheck = u.getEmailid();
-			passwordcheck=u.getPassword();
 			name=u.getFirstname();
 		}
-		if(emailCheck.equals(email) && passwordcheck.equals(password))
+		if(emailCheck.equals(email) && decryptpassword.equals(password))
 		{
 			String msg = "Hello "+emailCheck+ "Your name" +name;
 			session.setAttribute("doctoremailsession",email);

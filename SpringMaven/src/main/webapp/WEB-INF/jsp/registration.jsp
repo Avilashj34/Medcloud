@@ -180,47 +180,7 @@
 	<!-- //top-header -->
 
 	<!-- header-bottom-->
-	<div class="header-bot">
-		<div class="container">
-			<div class="row header-bot_inner_electronics-stroeinfo_header_mid">
-				<!-- logo -->
-				<div class="col-md-3 logo_electronics">
-					<h1 class="text-center">
-						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="${logo2}" alt=" " class="img-fluid">Med-Cloud
-						</a>
-					</h1>
-				</div>
-				<!-- //logo -->
-				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
-					<div class="row">
-						<!-- search -->
-						<div class="col-10 electronicsits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						</div>
-						<!-- //search -->
-						<!-- cart details -->
-						<div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-							<div class="electronics-stroecartaits electronics-stroecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="display" value="1">
-									<button class="btn storesview-cart" type="submit" name="submit" value="">
-										<i class="fas fa-cart-arrow-down"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<!-- //cart details -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
@@ -228,7 +188,6 @@
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="electronicsits-navi_search">
-					<a href="#"><h5>Home</h5></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 				    aria-expanded="false" aria-label="Toggle navigation">
@@ -237,7 +196,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="registration">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -271,9 +230,7 @@
 								<a class="dropdown-item" href="Hospitalregistration">Hospital Register</a>
 							</div>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
-						</li>
+						
 						
 					</ul>
 				</div>
@@ -334,7 +291,7 @@
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">
 											<div class="controls">
-												<input type="text" class="form-control" placeholder="Mobile Number" name="phonenumber" required="">
+												<input type="text" class="form-control" placeholder="Mobile Number" pattern="[789]{1}[0-9]{9}" name="phonenumber" required ">
 											</div>
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">
@@ -344,17 +301,18 @@
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">
 											<div class="controls">
-												<input type="password" class="form-control" placeholder="Password" name="password" required="">
+												<input type="password" class="form-control" placeholder="Password" id="password" name="password" required="">
 											</div>
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">
 											<div class="controls">
-												<input type="password" class="form-control" placeholder="Confirm Password" name="password" required="">
+												<input type="password" class="form-control" placeholder="Confirm Password" id="confirmpassword" name="password" required="">
 											</div>
 										</div>
 										<div class="stores_electronicsits_card_number_grid_left form-group">
 											<div class="controls">
-												<input type="text" class="form-control" placeholder="Aadhar Number" name="kyc" required="">
+												<input type="text" class="form-control" placeholder="Aadhar Number" id="adhaar" onkeyup="adharcheck()" name="kyc" required >
+												<span id="spAdhaar" style="color: red;"></span>
 											</div>
 										</div>
 									</div>
@@ -365,7 +323,8 @@
 										<select class="option-storesls" name="country">
 											<option id="country">Select Country</option>
 											<option value="india">India</option>
-											<option value="u">Commercial</option>
+											<option value="other">Other</option>
+																					
 										</select>
 									</div>
 									<div class="controls form-group">
@@ -391,50 +350,7 @@
 			</div>
 		</div>
 	</div>
-		<div class="electronics-sometext py-md-5 py-sm-4 py-3">
-			<div class="container">
-				<!-- brands -->
-				<div class="sub-some">
-					<h5 class="font-weight-bold mb-2">Doctor :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Android Phones</a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Smartphones</a>
-						</li>
-						
-					</ul>
-				</div>
-				<div class="sub-some mt-4">
-					<h5 class="font-weight-bold mb-2">Patient :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Laptops </a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product.html" class="border-right pr-2">Printers</a>
-						</li>
-						
-					</ul>
-				</div>
-				<div class="sub-some mt-4">
-					<h5 class="font-weight-bold mb-2">Hospital :</h5>
-					<ul>
-						<li class="m-sm-1">
-							<a href="product2.html" class="border-right pr-2">TVs & DTH</a>
-						</li>
-						<li class="m-sm-1">
-							<a href="product2.html" class="border-right pr-2">Home Theatre Systems</a>
-						</li>
-						
-					</ul>
-				</div>
-
-				
-				<!-- //payment -->
-			</div>
-		</div>
+		
 		<!-- //footer fourth section (text) -->
 	</footer>
 	<!-- //footer -->
@@ -514,17 +430,17 @@
 	<!-- password-script -->
 	<script>
 		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
+			document.getElementById("password").onchange = validatePassword;
+			document.getElementById("confirmpassword").onchange = validatePassword;
 		}
 
 		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
+			var pass2 = document.getElementById("confirmpassword").value;
+			var pass1 = document.getElementById("password").value;
 			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+				document.getElementById("confirmpassword").setCustomValidity("Passwords Don't Match");
 			else
-				document.getElementById("password2").setCustomValidity('');
+				document.getElementById("confirmpassword").setCustomValidity('');
 			//empty string means no validation error
 		}
 	</script>
@@ -588,7 +504,24 @@
 		});
 	</script>
 	<!-- //smooth-scrolling-of-move-up -->
-
+	<script type="text/javascript">
+	function adharcheck()
+	{
+		var adh = document.getElementById("adhaar").value;
+		if(adh.length<16 || adh.length>16)
+			{
+				document.getElementById("spAdhaar").innerHTML="Adhaar Number length 16 numbers";
+				document.getElementById("sbbutton").disabled = true;
+			}
+		else
+			{
+				document.getElementById("spAdhaar").innerHTML="";
+				document.getElementById("sbbutton").disabled = false;
+			}
+	}
+/*
+	
+	</script>
 	<!-- for bootstrap working -->
 	<script src="${boot}"></script>
 	<!-- //for bootstrap working -->

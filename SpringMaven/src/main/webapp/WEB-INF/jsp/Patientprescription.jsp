@@ -1,3 +1,4 @@
+<%@page import="com.medcloud.Model.Prescription"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.io.*,java.sql.*" %>
@@ -21,7 +22,7 @@
 <%
 String pid=(String)session.getAttribute("patientID");
 String email=(String)session.getAttribute("patientemailsession");
-
+Prescription p=new Prescription();
 Registration r=new Registration();
 Class.forName("com.mysql.jdbc.Driver");
 Connection con=DriverManager.getConnection("jdbc:mysql://medicaltreatment.cyd5gs2hapgv.ap-northeast-1.rds.amazonaws.com:3306/medicaltreatment","root","medcloud");
@@ -30,19 +31,31 @@ ResultSet rs= st.executeQuery("select * from patientinformation where emailid='"
 while(rs.next())
 {
 	r.setFirstname(rs.getString(2));
-	
-
+	r.setMiddlename(rs.getString(3));
+	r.setLastname(rs.getString(4));
+	r.setUserid(rs.getInt(1));
+}
 %>
-First Name : <%=r.getFirstname() %>
-<%} %>
+
+
+<%
+ResultSet rs1=st.executeQuery("select * from prescription where userid='"+r.getUserid()+"'");
+while(rs1.next()){
+	p.setMedicine1(rs1.getString(2));
+	p.setMedicine2(rs1.getString(3));
+	p.setAdvice(rs1.getString(4));
+	p.setDate(rs1.getTimestamp(5));
+}
+%>
+
 <center>
+Patient Name : <%=r.getFirstname()%> <%=r.getMiddlename() %> <%=r.getLastname() %> 
 <form action="prescriptionprocess" method="post">
 <table>
 <tr>
 <td>
 Medicine 1 </td><td><input type="text" name="medicine1"></td>
 </tr>
-
 <tr>
 <td>
 Med 2 </td><td> <input type="text" name="medicine2"></td></tr>
@@ -55,8 +68,37 @@ Advice </td><td> <input type="text" name="advice"></td></tr>
 <input type="submit" value="submit data"></td></tr>
 </table>
 </form>
-<h3>View the Report Of Patient<a href="Viewreport">Click Here</a></h3>
+<br>
+<br>
+<h5>View the Report Of Patient : <a href="Viewreport">Click Here</a></h5>
+<br>
+<br>
+
+<table border="2" bordercolor="#00FDDF" cellpadding="10">
+<tr>
+<th>Medicine1
+</th>
+<th>Medicine 2
+</th>
+<th>Advice
+</th>
+<th>Date & Time
+</th>
+</tr>
+<tr>
+	<td><%=p.getMedicine1() %>
+	</td>
+	<td><%=p.getMedicine2() %>
+	</td>
+	<td><%=p.getAdvice() %>
+	</td>
+	<td><%=p.getDate() %>
+	</td>	
+</tr>
+</table>
 </center>
+
+
 
 </body>
 </html>
